@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { searchRecipes } from "./controllers/SearchRecipeController";
 
 dotenv.config();
 const app = express();
@@ -8,12 +9,13 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get("/api/recipes/search", async (req, res)=>{
-    res.json({
-        message: 'success :)'
-    })
+app.get("/api/recipe/search", async (req, res) => {
+    const searchTerm = req.query.searchTerm as string;
+    const page = parseInt(req.query.page as string);
+    const results = await searchRecipes(searchTerm, page);
+    return res.json(results);
 });
 
-app.listen(5000, ()=>{
+app.listen(process.env.PORT, ()=>{
     console.log(`Server Running on http://localhost:${process.env.PORT}/api/recipes/search`);
 });
