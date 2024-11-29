@@ -13,9 +13,9 @@ app.get("/api/recipe/search", async (req, res) => {
     const searchTerm = req.query.searchTerm as string;
     const page = parseInt(req.query.page as string);
     const results = await searchRecipes(searchTerm, page);
-    return res.json(results);
+    return res.json(results) as any;
 });
 
 app.listen(process.env.PORT, ()=>{
-    console.log(`Server Running on http://localhost:${process.env.PORT}/api/recipes/search`);
+    console.log(`Server Running on http://localhost:${process.env.PORT}/api/recipe/search`);
 });
