@@ -1,33 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, { FormEvent, useState } from 'react'
 import './App.css'
+import { SearchRecipesService } from './service/SearchRecipesService';
+import Recipe from './model/Recipe';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
+
+  const handleSearchSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+
+    try {
+      const recipes = await SearchRecipesService(searchTerm, 1);
+      setRecipes(recipes.results);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <form onSubmit={(event) => handleSearchSubmit(event)}>
+          <input 
+            type="text" 
+            required 
+            placeholder='Enter a search Term...' 
+            value={searchTerm}
+            onChange={(event)=> setSearchTerm(event.target.value)}
+            ></input>
+          <button type="submit">Submit</button>
+        </form>
+        {recipes.map((recipe: Recipe) => (
+          <div key={recipe.id}>
+            Recipe Image Location: {recipe.image}
+            <br />
+            Recipe Title: {recipe.title}
+          </div>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
