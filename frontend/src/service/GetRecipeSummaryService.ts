@@ -1,5 +1,5 @@
 const getRecipeSummaryService = async (recipeId: string)=>{
-    const urlBase = new URL(`https://localhost:5000/api/recipe/${recipeId}/summary`);
+    const urlBase = new URL(`http://localhost:5000/api/recipe/${recipeId}/summary`);
     const response = await fetch(urlBase.toString());
     if(!response.ok){
         throw new Error(`Http error! Status: ${response.status}`)

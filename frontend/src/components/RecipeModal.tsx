@@ -4,9 +4,10 @@ import { getRecipeSummaryService } from "../service/GetRecipeSummaryService"
 
 interface Props {
     recipeId: string;
+    onClose: ()=> void;
 }
 
-function RecipeModal({ recipeId }: Props) {
+function RecipeModal({ recipeId, onClose }: Props) {
 
     const [recipeSummary, setRecipeSummary] = useState<RecipeSummary>();
 
@@ -33,7 +34,7 @@ function RecipeModal({ recipeId }: Props) {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h2>{recipeSummary?.title}</h2>
-                            <span className="close-btn">&times;</span>
+                            <span className="close-btn" onClick={onClose}>&times;</span>
                         </div>
                         <p dangerouslySetInnerHTML={{ __html: recipeSummary?.summary }}></p>
                     </div>
