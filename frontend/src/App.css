@@ -38,3 +38,15 @@
 .close-btn{
   cursor: pointer;
 }
+
+.tabs{
+  display: flex;
+  gap: 2em;
+  cursor: pointer;
+}
+
+.recipe-card-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
