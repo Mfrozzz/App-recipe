@@ -6,6 +6,7 @@ import RecipeCard from './components/RecipeCard';
 import RecipeModal from './components/RecipeModal';
 import { GetFavouriteRecipesService } from './service/GetFavouriteRecipesService';
 import { AddFavouriteRecipeService } from './service/AddFavouriteRecipeService';
+import { RemoveFavouriteRecipeService } from './service/RemoveFavouriteRecipeService';
 
 
 type Tabs = "search" | "favourites" ;
@@ -53,7 +54,7 @@ function App() {
     }
   }
 
-  const addfavoriteRecipe = async (recipe: Recipe) => {
+  const addFavoriteRecipe = async (recipe: Recipe) => {
     try {
       await AddFavouriteRecipeService(recipe);
       setFavouriteRecipes([...favouriteRecipes, recipe]);
@@ -61,6 +62,18 @@ function App() {
       console.log(error);
     }
   };
+
+  const removeFavouriteRecipe = async (recipe: Recipe) => {
+    try {
+      await RemoveFavouriteRecipeService(recipe);
+      const updatedRecipes = favouriteRecipes.filter(
+        (favoriteRecipe)=> recipe.id !== favoriteRecipe.id
+      );
+      setFavouriteRecipes(updatedRecipes);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <>
@@ -80,17 +93,23 @@ function App() {
             ></input>
           <button type="submit">Submit</button>
         </form>
-
-        {/* qualquer coisa tá aqui a mudança */}
-
-        {recipes.map((recipe: Recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} onClick={()=> setSelectedRecipe(recipe)} onFavouriteButtonClick={()=> undefined}/>
-        ))}
+        {recipes.map((recipe: Recipe) => {
+          const isFavorite = favouriteRecipes.some(
+            (favoriteRecipe)=> recipe.id === favoriteRecipe.id
+          );
+          return (
+            <RecipeCard
+              key={recipe.id}
+              recipe={recipe}
+              onClick={() => setSelectedRecipe(recipe)}
+              onFavouriteButtonClick={isFavorite ? removeFavouriteRecipe : addFavoriteRecipe}
+              isFavorite ={isFavorite}
+            />
+          );
+        })}
         <button className="view-more-button" onClick={handleViewMoreClick}>
           View More
         </button>
-        
-        {/* TESTAR TUDO AINDA */}
       </>)}
       {selectedTab === "favourites" && (<>
         <div>
@@ -98,12 +117,16 @@ function App() {
             <RecipeCard 
               recipe={recipe}
               onClick={()=> setSelectedRecipe(recipe)}
-              onFavouriteButtonClick={addfavoriteRecipe}
+              onFavouriteButtonClick={removeFavouriteRecipe}
+              isFavorite={true}
             />
           )}
         </div>
       </>)}
-        {selectedRecipe ? <RecipeModal recipeId={selectedRecipe.id.toString()} onClose={()=> setSelectedRecipe(undefined)}/> : null}
+        {selectedRecipe ? 
+          <RecipeModal 
+          recipeId={selectedRecipe.id.toString()} 
+          onClose={()=> setSelectedRecipe(undefined)}/> : null}
       </div>
     </>
   );
