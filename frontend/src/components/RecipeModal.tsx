@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { RecipeSummary } from "../model/RecipeSummary";
 import { getRecipeSummaryService } from "../service/GetRecipeSummaryService"
+import { AiOutlineClose } from "react-icons/ai";
 
 interface Props {
     recipeId: string;
-    onClose: ()=> void;
+    onClose: () => void;
 }
 
 function RecipeModal({ recipeId, onClose }: Props) {
@@ -34,7 +35,7 @@ function RecipeModal({ recipeId, onClose }: Props) {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h2>{recipeSummary?.title}</h2>
-                            <span className="close-btn" onClick={onClose}>&times;</span>
+                            <span className="close-btn" onClick={onClose}><AiOutlineClose /></span>
                         </div>
                         <p dangerouslySetInnerHTML={{ __html: recipeSummary?.summary }}></p>
                     </div>

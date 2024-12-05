@@ -1,4 +1,4 @@
-import React, { FormEvent, useEffect, useRef, useState } from 'react'
+import { FormEvent, useEffect, useRef, useState } from 'react'
 import './App.css'
 import { SearchRecipesService } from './service/SearchRecipesService';
 import Recipe from './model/Recipe';
@@ -8,7 +8,6 @@ import { GetFavouriteRecipesService } from './service/GetFavouriteRecipesService
 import { AddFavouriteRecipeService } from './service/AddFavouriteRecipeService';
 import { RemoveFavouriteRecipeService } from './service/RemoveFavouriteRecipeService';
 import { AiOutlineSearch } from 'react-icons/ai';
-
 
 type Tabs = "search" | "favourites";
 
@@ -96,7 +95,7 @@ function App() {
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
             ></input>
-            <button type="submit"><AiOutlineSearch size={40}/></button>
+            <button type="submit"><AiOutlineSearch size={40} /></button>
           </form>
           <div className="recipe-grid">
             {recipes.map((recipe: Recipe) => {

@@ -20,19 +20,19 @@ app.get("/api/recipe/search", async (req, res) => {
     return res.json(results) as any;
 });
 
-app.get("/api/recipe/:recipeId/summary", async (req, res)=>{
+app.get("/api/recipe/:recipeId/summary", async (req, res) => {
     const recipeId = req.params.recipeId;
     const results = await getRecipeSummary(recipeId);
     return res.json(results) as any;
 });
 
-app.get("/api/recipe/favourite", async (req,res)=>{
-    try{
+app.get("/api/recipe/favourite", async (req, res) => {
+    try {
         const favouriteRecipes = await prismaClient.favouriteRecipes.findMany();
-        const recipeIds = favouriteRecipes.map((recipe)=> recipe.recipeId.toString());
+        const recipeIds = favouriteRecipes.map((recipe) => recipe.recipeId.toString());
         const favourites = await getFavouriteRecipesByIds(recipeIds);
         return res.json(favourites) as any;
-    }catch(error){
+    } catch (error) {
         console.log(error);
         return res.status(500).json({
             error: "Something went wrong"
@@ -40,9 +40,9 @@ app.get("/api/recipe/favourite", async (req,res)=>{
     }
 });
 
-app.post("/api/recipe/favourite", async (req,res)=>{
+app.post("/api/recipe/favourite", async (req, res) => {
     const recipeId = req.body.recipeId;
-    try{
+    try {
         const favouriteRecipe = await prismaClient.favouriteRecipes.create(
             {
                 data: {
@@ -51,7 +51,7 @@ app.post("/api/recipe/favourite", async (req,res)=>{
             }
         );
         return res.status(201).json(favouriteRecipe) as any;
-    }catch(error){
+    } catch (error) {
         console.log(error);
         return res.status(500).json({
             error: "Something went wrong"
@@ -59,16 +59,16 @@ app.post("/api/recipe/favourite", async (req,res)=>{
     }
 });
 
-app.delete("/api/recipe/favourite", async (req,res)=>{
+app.delete("/api/recipe/favourite", async (req, res) => {
     const recipeId = req.body.recipeId;
-    try{
+    try {
         await prismaClient.favouriteRecipes.delete({
-            where:{
+            where: {
                 recipeId: recipeId
             }
         });
         return res.status(204).send() as any;
-    }catch(error){
+    } catch (error) {
         console.log(error);
         return res.status(500).json({
             error: "Something went wrong"
@@ -76,7 +76,7 @@ app.delete("/api/recipe/favourite", async (req,res)=>{
     }
 });
 
-app.listen(process.env.PORT, ()=>{
+app.listen(process.env.PORT, () => {
     console.log(`Server Running on http://localhost:${process.env.PORT}`);
     console.log(`Endpoints that you can test:`);
     console.log(`Get -> Search Recipe: http://localhost:${process.env.PORT}/api/recipe/search?searchTerm={searchTerm}&page={page}`);

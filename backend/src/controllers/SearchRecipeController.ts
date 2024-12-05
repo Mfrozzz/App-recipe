@@ -1,12 +1,11 @@
-import { query } from "express";
 import dotenv from "dotenv";
 
 dotenv.config();
 const apiKey = process.env.API_KEY;
 
-export const searchRecipes = async (searchTerm: string, page:number) =>{
+export const searchRecipes = async (searchTerm: string, page: number) => {
 
-    if(!apiKey){
+    if (!apiKey) {
         throw new Error("API key not found.");
     }
 
@@ -15,18 +14,18 @@ export const searchRecipes = async (searchTerm: string, page:number) =>{
 
     const queryParams = {
         apiKey,
-        query : searchTerm,
+        query: searchTerm,
         number: "8",
-        offset: (page*10).toString()
+        offset: (page * 10).toString()
     }
 
     url.search = new URLSearchParams(queryParams).toString();
 
-    try{
+    try {
         const searchResponse = await fetch(url.toString());
         const resultJson = await searchResponse.json();
         return resultJson;
-    }catch(error){
+    } catch (error) {
         console.error(error);
     }
 };

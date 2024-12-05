@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 dotenv.config();
 const apiKey = process.env.API_KEY;
 
-export const getFavouriteRecipesByIds = async(ids: string[]) =>{
-    if(!apiKey){
+export const getFavouriteRecipesByIds = async (ids: string[]) => {
+    if (!apiKey) {
         throw new Error("API key not found.");
     }
 
