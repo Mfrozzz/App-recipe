@@ -12,7 +12,7 @@ function RecipeCard({recipe, onClick, onFavouriteButtonClick, isFavorite}: Props
     return (
         <div className="recipe-card" onClick={onClick}>
             <img src={recipe.image}/>
-            <div className="recipe-card title">
+            <div className="recipe-card-title">
                 <span onClick={(event)=>{
                     event.stopPropagation()
                     onFavouriteButtonClick(recipe)

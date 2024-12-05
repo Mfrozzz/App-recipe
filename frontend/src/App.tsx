@@ -7,29 +7,30 @@ import RecipeModal from './components/RecipeModal';
 import { GetFavouriteRecipesService } from './service/GetFavouriteRecipesService';
 import { AddFavouriteRecipeService } from './service/AddFavouriteRecipeService';
 import { RemoveFavouriteRecipeService } from './service/RemoveFavouriteRecipeService';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 
-type Tabs = "search" | "favourites" ;
+type Tabs = "search" | "favourites";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [recipes, setRecipes] = useState<Recipe[]>([]);
   const [selectedRecipe, setSelectedRecipe] = useState<Recipe | undefined>(undefined);
-  const [selectedTab,setSelectedTab] = useState<Tabs>("search");
+  const [selectedTab, setSelectedTab] = useState<Tabs>("search");
   const [favouriteRecipes, setFavouriteRecipes] = useState<Recipe[]>([]);
   const pageNumber = useRef(1);
 
-  useEffect(()=>{
-    const fetchFavouriteRecipes = async ()=>{
-      try{
+  useEffect(() => {
+    const fetchFavouriteRecipes = async () => {
+      try {
         const favouriteRecipes = await GetFavouriteRecipesService();
         setFavouriteRecipes(favouriteRecipes.results);
-      }catch(error){
+      } catch (error) {
         console.log(error);
       }
     }
     fetchFavouriteRecipes();
-  },[]);
+  }, []);
 
   const handleSearchSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -43,13 +44,13 @@ function App() {
     }
   }
 
-  const handleViewMoreClick = async () =>{
+  const handleViewMoreClick = async () => {
     const nextPage = pageNumber.current + 1;
-    try{
+    try {
       const nextRecipes = await SearchRecipesService(searchTerm, nextPage);
       setRecipes([...recipes, ...nextRecipes.results]);
       pageNumber.current = nextPage;
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
   }
@@ -67,7 +68,7 @@ function App() {
     try {
       await RemoveFavouriteRecipeService(recipe);
       const updatedRecipes = favouriteRecipes.filter(
-        (favoriteRecipe)=> recipe.id !== favoriteRecipe.id
+        (favoriteRecipe) => recipe.id !== favoriteRecipe.id
       );
       setFavouriteRecipes(updatedRecipes);
     } catch (error) {
@@ -76,59 +77,65 @@ function App() {
   }
 
   return (
-    <>
+    <div className='app-container'>
+      <div className="header">
+        <img src="../public/hero-image.jpg" alt="Food Banner" />
+        <div className="title">Tasty🥐Pick</div>
+      </div>
       <div>
-      <div className="tabs">
-        <h1 onClick={()=> setSelectedTab("search")}>Recipe Search</h1>
-        <h1 onClick={()=> setSelectedTab("favourites")}>Favourites</h1>
-      </div>
-      {selectedTab === "search" && (<>
-        <form onSubmit={(event) => handleSearchSubmit(event)}>
-          <input 
-            type="text" 
-            required 
-            placeholder='Enter a search Term...' 
-            value={searchTerm}
-            onChange={(event)=> setSearchTerm(event.target.value)}
-            ></input>
-          <button type="submit">Submit</button>
-        </form>
-        {recipes.map((recipe: Recipe) => {
-          const isFavorite = favouriteRecipes.some(
-            (favoriteRecipe)=> recipe.id === favoriteRecipe.id
-          );
-          return (
-            <RecipeCard
-              key={recipe.id}
-              recipe={recipe}
-              onClick={() => setSelectedRecipe(recipe)}
-              onFavouriteButtonClick={isFavorite ? removeFavouriteRecipe : addFavoriteRecipe}
-              isFavorite ={isFavorite}
-            />
-          );
-        })}
-        <button className="view-more-button" onClick={handleViewMoreClick}>
-          View More
-        </button>
-      </>)}
-      {selectedTab === "favourites" && (<>
-        <div>
-          {favouriteRecipes.map((recipe)=>
-            <RecipeCard 
-              recipe={recipe}
-              onClick={()=> setSelectedRecipe(recipe)}
-              onFavouriteButtonClick={removeFavouriteRecipe}
-              isFavorite={true}
-            />
-          )}
+        <div className="tabs">
+          <h1 className={selectedTab === 'search' ? 'tab-active' : ''} onClick={() => setSelectedTab("search")}>Recipe Search 🤔</h1>
+          <h1 className={selectedTab === 'favourites' ? 'tab-active' : ''} onClick={() => setSelectedTab("favourites")}>Favourites 😍</h1>
         </div>
-      </>)}
-        {selectedRecipe ? 
-          <RecipeModal 
-          recipeId={selectedRecipe.id.toString()} 
-          onClose={()=> setSelectedRecipe(undefined)}/> : null}
+        {selectedTab === "search" && (<>
+          <form onSubmit={(event) => handleSearchSubmit(event)}>
+            <input
+              type="text"
+              required
+              placeholder='Enter a search Term...'
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+            ></input>
+            <button type="submit"><AiOutlineSearch size={40}/></button>
+          </form>
+          <div className="recipe-grid">
+            {recipes.map((recipe: Recipe) => {
+              const isFavorite = favouriteRecipes.some(
+                (favoriteRecipe) => recipe.id === favoriteRecipe.id
+              );
+              return (
+                <RecipeCard
+                  key={recipe.id}
+                  recipe={recipe}
+                  onClick={() => setSelectedRecipe(recipe)}
+                  onFavouriteButtonClick={isFavorite ? removeFavouriteRecipe : addFavoriteRecipe}
+                  isFavorite={isFavorite}
+                />
+              );
+            })}
+          </div>
+          <button className="view-more-button" onClick={handleViewMoreClick}>
+            View More
+          </button>
+        </>)}
+        {selectedTab === "favourites" && (<>
+          <div className='recipe-grid'>
+            {favouriteRecipes.map((recipe) =>
+              <RecipeCard
+                recipe={recipe}
+                onClick={() => setSelectedRecipe(recipe)}
+                onFavouriteButtonClick={removeFavouriteRecipe}
+                isFavorite={true}
+              />
+            )}
+          </div>
+        </>)}
+        {selectedRecipe ?
+          <RecipeModal
+            recipeId={selectedRecipe.id.toString()}
+            onClose={() => setSelectedRecipe(undefined)} /> : null}
       </div>
-    </>
+    </div>
   );
 }
 
