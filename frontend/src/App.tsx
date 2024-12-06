@@ -8,6 +8,7 @@ import { GetFavouriteRecipesService } from './service/GetFavouriteRecipesService
 import { AddFavouriteRecipeService } from './service/AddFavouriteRecipeService';
 import { RemoveFavouriteRecipeService } from './service/RemoveFavouriteRecipeService';
 import { AiOutlineSearch } from 'react-icons/ai';
+import EmptyFavouriteTab from './components/EmptyFavouriteTab';
 
 type Tabs = "search" | "favourites";
 
@@ -94,10 +95,12 @@ function App() {
               placeholder='Enter a search Term...'
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
+              title='Enter a recipe name or category.'
             ></input>
-            <button type="submit"><AiOutlineSearch size={40} /></button>
+            <button type="submit"><AiOutlineSearch className='search-btn' size={40} /></button>
           </form>
           <div className="recipe-grid">
+            {/* Add a component when the search returns 0 results */}
             {recipes.map((recipe: Recipe) => {
               const isFavorite = favouriteRecipes.some(
                 (favoriteRecipe) => recipe.id === favoriteRecipe.id
@@ -119,14 +122,19 @@ function App() {
         </>)}
         {selectedTab === "favourites" && (<>
           <div className='recipe-grid'>
-            {favouriteRecipes.map((recipe) =>
-              <RecipeCard
-                recipe={recipe}
-                onClick={() => setSelectedRecipe(recipe)}
-                onFavouriteButtonClick={removeFavouriteRecipe}
-                isFavorite={true}
-              />
-            )}
+            {favouriteRecipes.length > 0 ? (
+                favouriteRecipes.map((recipe) =>
+                  <RecipeCard
+                    recipe={recipe}
+                    onClick={() => setSelectedRecipe(recipe)}
+                    onFavouriteButtonClick={removeFavouriteRecipe}
+                    isFavorite={true}
+                  />
+                )
+              ) : (
+                <EmptyFavouriteTab/>
+              )
+            }
           </div>
         </>)}
         {selectedRecipe ?
