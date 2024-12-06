@@ -9,6 +9,8 @@ import { AddFavouriteRecipeService } from './service/AddFavouriteRecipeService';
 import { RemoveFavouriteRecipeService } from './service/RemoveFavouriteRecipeService';
 import { AiOutlineSearch } from 'react-icons/ai';
 import EmptyFavouriteTab from './components/EmptyFavouriteTab';
+import { FaSignInAlt } from 'react-icons/fa';
+import { BsBoxArrowInDownLeft } from 'react-icons/bs';
 
 type Tabs = "search" | "favourites";
 
@@ -78,6 +80,16 @@ function App() {
 
   return (
     <div className='app-container'>
+      <nav>
+        <div className="left-nav">
+          Tasty🥐Pick
+        </div>
+        <div className='right-nav'>
+          {/* arrumar alinhamento icons */}
+          <span className='btnsRight'><FaSignInAlt/> Sign in</span>
+          <span className='btnsRight'><BsBoxArrowInDownLeft/> Sign up</span>
+        </div>
+      </nav>
       <div className="header">
         <img src="../public/hero-image.jpg" alt="Food Banner" />
         <div className="title">Tasty🥐Pick</div>
@@ -102,19 +114,19 @@ function App() {
           <div className="recipe-grid">
             {/* Add a component when the search returns 0 results */}
             {recipes.map((recipe: Recipe) => {
-              const isFavorite = favouriteRecipes.some(
-                (favoriteRecipe) => recipe.id === favoriteRecipe.id
-              );
-              return (
-                <RecipeCard
-                  key={recipe.id}
-                  recipe={recipe}
-                  onClick={() => setSelectedRecipe(recipe)}
-                  onFavouriteButtonClick={isFavorite ? removeFavouriteRecipe : addFavoriteRecipe}
-                  isFavorite={isFavorite}
-                />
-              );
-            })}
+                const isFavorite = favouriteRecipes.some(
+                  (favoriteRecipe) => recipe.id === favoriteRecipe.id
+                );
+                return (
+                  <RecipeCard
+                    key={recipe.id}
+                    recipe={recipe}
+                    onClick={() => setSelectedRecipe(recipe)}
+                    onFavouriteButtonClick={isFavorite ? removeFavouriteRecipe : addFavoriteRecipe}
+                    isFavorite={isFavorite}
+                  />
+                );
+              })}
           </div>
           <button className="view-more-button" onClick={handleViewMoreClick}>
             View More
@@ -123,17 +135,17 @@ function App() {
         {selectedTab === "favourites" && (<>
           <div className='recipe-grid'>
             {favouriteRecipes.length > 0 ? (
-                favouriteRecipes.map((recipe) =>
-                  <RecipeCard
-                    recipe={recipe}
-                    onClick={() => setSelectedRecipe(recipe)}
-                    onFavouriteButtonClick={removeFavouriteRecipe}
-                    isFavorite={true}
-                  />
-                )
-              ) : (
-                <EmptyFavouriteTab/>
+              favouriteRecipes.map((recipe) =>
+                <RecipeCard
+                  recipe={recipe}
+                  onClick={() => setSelectedRecipe(recipe)}
+                  onFavouriteButtonClick={removeFavouriteRecipe}
+                  isFavorite={true}
+                />
               )
+            ) : (
+              <EmptyFavouriteTab />
+            )
             }
           </div>
         </>)}

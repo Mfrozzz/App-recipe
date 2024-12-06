@@ -3,8 +3,8 @@
 }
 
 body {
-  padding-top: 5em;
-  padding-bottom: 5em;
+  padding-top: 3em;
+  padding-bottom: 1em;
   height: 100vh;
   background-color: #ebebeb;
 }
@@ -124,6 +124,46 @@ button {
   display: flex;
   flex-direction: column;
   gap: 2em;
+}
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  padding: 10px; 
+}
+
+.left-nav{
+  color: #ebebeb;
+  font-size: 1.75em;
+  text-align: center;
+  background-color: #2b2b2b;
+  opacity: 80%;
+  padding: 0.5em 1.5em 0.5em 1.5em;
+  cursor: default;
+}
+
+.right-nav{
+  display: flex;
+  align-content: center;
+  align-self: center;
+}
+
+.btnsRight{
+  margin-left: 1em;
+  font-size: 1.3em;
+  text-align: center;
+  background-color: #2b2b2b;
+  opacity: 80%;
+  padding: 0.5em 1.5em 0.5em 1.5em;
+  cursor: pointer;
+  color: #ebebeb;
+  transition: .3s;
+}
+
+.btnsRight:hover{
+  background-color: #007fff;
+  transform: scale(1.1);
 }
 
 .header {
