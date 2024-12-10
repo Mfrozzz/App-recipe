@@ -31,7 +31,7 @@ The app has some prerequisites for getting started, including:
 ```
 2. Get the Spoonacular API to access the recipes
    * Register at [Spoonacular](https://spoonacular.com/food-api) by clicking "Start Now"
-3. Install PostgreSQL in your environment or configure a cloud database
+3. Install PostgreSQL in your environment or configure a cloud database, for example:
    * [PostgreSQL](https://www.postgresql.org/download/)
    * [ElephantSQL](https://www.elephantsql.com/)
    * [Aiven](https://aiven.io/)
@@ -79,7 +79,3 @@ For more information on the Frontend [Click Here](https://github.com/Mfrozzz/App
 ## <span id="more-info">More Information</span>
 
 > Based on the project from [FreeCodeCamp🔥](https://www.freecodecamp.org/news/full-stack-project-create-a-recipe-app-using-react-node-js/)
-
---- 
-
-Let me know if you need any adjustments or have other questions!

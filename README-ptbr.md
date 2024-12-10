@@ -33,7 +33,7 @@ O aplicativo possui certos pré-requisitos para se dar seu inicio, dentre eles s
 ```
 2. Consiga a API do Spoonacular para conseguir acesso às receitas
     * Faça o registro no [Spoonacular](https://spoonacular.com/food-api) clicando em "Start Now"
-3. Faça instalação do PostgreSQL em seu ambiente ou configure um banco de dados em nuvem
+3. Faça instalação do PostgreSQL em seu ambiente ou configure um banco de dados em nuvem, por exemplo:
     * [PostgreSQL](https://www.postgresql.org/download/)
     * [ElephantSQL](https://www.elephantsql.com/)
     * [Aiven](https://aiven.io/)
