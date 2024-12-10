@@ -2,6 +2,7 @@ import Recipe from "../model/Recipe";
 
 const RemoveFavouriteRecipeService = async (recipe: Recipe) => {
     const urlBase = new URL("http://localhost:5000/api/recipe/favourite");
+    // add userId
     const req = {
         recipeId: recipe.id
     }

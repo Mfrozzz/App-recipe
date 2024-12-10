@@ -16,4 +16,5 @@ datasource db {
 model FavouriteRecipes {
   id Int @id @default(autoincrement())
   recipeId Int @unique
+  // userId Int @unique
 }

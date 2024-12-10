@@ -11,6 +11,8 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import EmptyFavouriteTab from './components/EmptyFavouriteTab';
 import { FaSignInAlt } from 'react-icons/fa';
 import { BsBoxArrowInDownLeft } from 'react-icons/bs';
+// import { Link } from 'react-router-dom';
+// import SignUp from './pages/SignUp';
 
 type Tabs = "search" | "favourites";
 
