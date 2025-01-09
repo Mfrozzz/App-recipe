@@ -9,8 +9,7 @@ router.get("/api/recipe/:recipeId/summary", getRecipeSummaryHandler);
 router.get("/api/recipe/favourite", getFavouriteRecipesHandler);
 router.post("/api/recipe/favourite", addFavouriteRecipeHandler);
 router.delete("/api/recipe/favourite", deleteFavouriteRecipeHandler);
-
-router.post('/api/signup', signupHandler);
-router.post('/api/login', loginHandler);
+router.post('/api/recipe/signup', signupHandler);
+router.post('/api/recipe/login', loginHandler);
 
 export default router;
