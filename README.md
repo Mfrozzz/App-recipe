@@ -36,6 +36,14 @@ The app has some prerequisites for getting started, including:
    * [ElephantSQL](https://www.elephantsql.com/)
    * [Aiven](https://aiven.io/)
    * [Tembo](https://tembo.io/)
+   * Docker: If you prefer to use Docker, run the following command to create and start a PostgreSQL container:
+    ```shell
+        docker run --name postgresql -e POSTGRES_PASSWORD=password -d -p 5432:5432 user
+    ```
+    * --name: Define o nome do contêiner como "postgresql".
+    * -e POSTGRES_PASSWORD=password: Define a senha do usuário "postgres".
+    * -d: Executa o contêiner em segundo plano.
+    * -p 5432:5432: Mapeia a porta 5432 do contêiner para a porta 5432 do host.
 4. Initialize the Node.js environment for both frontend and backend
     ```shell
         cd backend
@@ -50,6 +58,7 @@ The app has some prerequisites for getting started, including:
         PORT=5000
         DATABASE_URL="postgresql://user:password@localhost:5432/database_name"
         API_KEY=your_api_key
+        SECRET_KEY="your_secret_key"
     ```
 6. Create the database in your chosen environment
     * Example:
@@ -60,6 +69,7 @@ The app has some prerequisites for getting started, including:
     ```shell
     npx prisma init
     npm prisma generate
+    npx prisma db push
     ```
 
 <br>

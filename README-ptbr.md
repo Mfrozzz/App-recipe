@@ -38,6 +38,14 @@ O aplicativo possui certos pré-requisitos para se dar seu inicio, dentre eles s
     * [ElephantSQL](https://www.elephantsql.com/)
     * [Aiven](https://aiven.io/)
     * [Tembo](https://tembo.io/)
+    * Docker: Caso prefira usar o Docker, execute o comando abaixo para criar e iniciar um contêiner PostgreSQL:
+    ```shell
+        docker run --name postgresql -e POSTGRES_PASSWORD=password -d -p 5432:5432 user
+    ```
+    * --name: Define o nome do contêiner como "postgresql".
+    * -e POSTGRES_PASSWORD=password: Define a senha do usuário "postgres".
+    * -d: Executa o contêiner em segundo plano.
+    * -p 5432:5432: Mapeia a porta 5432 do contêiner para a porta 5432 do host.
 4. Inicialize o ambiente Node.js no frontend e no backend
     ```shell
         cd backend
@@ -52,6 +60,7 @@ O aplicativo possui certos pré-requisitos para se dar seu inicio, dentre eles s
         PORT=5000
         DATABASE_URL="postgresql://user:password@localhost:5432/database_name"
         API_KEY=sua_api_key
+        SECRET_KEY="sua_chave_criptografia"
     ```
 6. Crie o Banco de dados em seu ambiente escolhido
     * Exemplo:
@@ -62,6 +71,7 @@ O aplicativo possui certos pré-requisitos para se dar seu inicio, dentre eles s
     ```
     npx prisma init
     npm prisma generate
+    npx prisma db push
     ```
 
 <br>
