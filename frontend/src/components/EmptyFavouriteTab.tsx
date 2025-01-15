@@ -1,6 +1,8 @@
+import  styles from "../pages/css/RecipesPage.module.css";
+
 function EmptyFavouriteTab(){
     return (
-        <div className="empty-card">
+        <div className={styles.emptyCard}>
             <p>🍽️ Add some favourite Recipes to see them here! 🍽️</p>
         </div>
     );

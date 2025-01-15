@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useRef, useState } from 'react'
 import '../App.css'
+import  styles from "./css/RecipesPage.module.css";
 import { SearchRecipesService } from '../service/SearchRecipesService';
 import Recipe from '../model/Recipe';
 import RecipeCard from '../components/RecipeCard';
@@ -82,25 +83,25 @@ function RecipesPage() {
   }
 
   return (
-    <div className='app-container'>
+    <div className={styles.appContainer}>
       <nav>
-        <div className="left-nav">
+        <div className={styles.leftNav}>
           Tasty🥐Pick
         </div>
-        <div className='right-nav'>
+        <div className={styles.rightNav}>
           {/* arrumar alinhamento icons */}
-          <span className='btnsRight'><FaSignInAlt/> <Link to="/signin">Sign in</Link></span>
-          <span className='btnsRight'><BsBoxArrowInDownLeft/> <Link to="/signup">Sign up</Link></span>
+          <span className={styles.btnsRight}><FaSignInAlt/> <Link to="/signin">Sign in</Link></span>
+          <span className={styles.btnsRight}><BsBoxArrowInDownLeft/> <Link to="/signup">Sign up</Link></span>
         </div>
       </nav>
-      <div className="header">
+      <div className={styles.header}>
         <img src="../public/hero-image.jpg" alt="Food Banner" />
-        <div className="title">Tasty🥐Pick</div>
+        <div className={styles.title}>Tasty🥐Pick</div>
       </div>
       <div>
-        <div className="tabs">
-          <h1 className={selectedTab === 'search' ? 'tab-active' : ''} onClick={() => setSelectedTab("search")}>Recipe Search 🤔</h1>
-          <h1 className={selectedTab === 'favourites' ? 'tab-active' : ''} onClick={() => setSelectedTab("favourites")}>Favourites 😍</h1>
+        <div className={styles.tabs}>
+          <h1 className={selectedTab === 'search' ? styles.tabActive : ''} onClick={() => setSelectedTab("search")}>Recipe Search 🤔</h1>
+          <h1 className={selectedTab === 'favourites' ? styles.tabActive : ''} onClick={() => setSelectedTab("favourites")}>Favourites 😍</h1>
         </div>
         {selectedTab === "search" && (<>
           <form onSubmit={(event) => handleSearchSubmit(event)}>
@@ -112,9 +113,9 @@ function RecipesPage() {
               onChange={(event) => setSearchTerm(event.target.value)}
               title='Enter a recipe name or category.'
             ></input>
-            <button type="submit"><AiOutlineSearch className='search-btn' size={40} /></button>
+            <button type="submit"><AiOutlineSearch className={styles.searchBtn} size={40} /></button>
           </form>
-          <div className="recipe-grid">
+          <div className={styles.recipeGrid}>
             {/* Add a component when the search returns 0 results */}
             {recipes.map((recipe: Recipe) => {
                 const isFavorite = favouriteRecipes.some(
@@ -131,12 +132,12 @@ function RecipesPage() {
                 );
               })}
           </div>
-          <button className="view-more-button" onClick={handleViewMoreClick}>
+          <button className={styles.viewMoreButton} onClick={handleViewMoreClick}>
             View More
           </button>
         </>)}
         {selectedTab === "favourites" && (<>
-          <div className='recipe-grid'>
+          <div className={styles.recipeGrid}>
             {favouriteRecipes.length > 0 ? (
               favouriteRecipes.map((recipe) =>
                 <RecipeCard

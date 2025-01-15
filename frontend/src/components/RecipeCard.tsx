@@ -1,5 +1,6 @@
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import Recipe from "../model/Recipe";
+import  styles from "../pages/css/RecipesPage.module.css";
 
 interface Props {
     recipe: Recipe;
@@ -10,9 +11,9 @@ interface Props {
 
 function RecipeCard({ recipe, onClick, onFavouriteButtonClick, isFavorite }: Props) {
     return (
-        <div className="recipe-card" onClick={onClick}>
+        <div className={styles.recipeCard} onClick={onClick}>
             <img src={recipe.image} />
-            <div className="recipe-card-title">
+            <div className={styles.recipeCardTitle}>
                 <span onClick={(event) => {
                     event.stopPropagation()
                     onFavouriteButtonClick(recipe)

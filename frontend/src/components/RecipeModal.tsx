@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { RecipeSummary } from "../model/RecipeSummary";
 import { getRecipeSummaryService } from "../service/GetRecipeSummaryService"
 import { AiOutlineClose } from "react-icons/ai";
+import  styles from "../pages/css/RecipesPage.module.css";
 
 interface Props {
     recipeId: string;
@@ -30,12 +31,12 @@ function RecipeModal({ recipeId, onClose }: Props) {
 
     return (
         <>
-            <div className="overlay">
-                <div className="modal">
-                    <div className="modal-content">
-                        <div className="modal-header">
+            <div className={styles.overlay}>
+                <div className={styles.modal}>
+                    <div className={styles.modalContent}>
+                        <div className={styles.modalHeader}>
                             <h2>{recipeSummary?.title}</h2>
-                            <span className="close-btn" onClick={onClose}><AiOutlineClose /></span>
+                            <span className={styles.closeBtn} onClick={onClose}><AiOutlineClose /></span>
                         </div>
                         <p dangerouslySetInnerHTML={{ __html: recipeSummary?.summary }}></p>
                     </div>
