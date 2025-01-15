@@ -1,3 +1,20 @@
+#root {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  padding-bottom: 1em;
+  height: 100vh;
+  background-color: #ebebeb;
+}
+
+@media (min-width: 768px) {
+  body {
+    margin-left: 10em;
+    margin-right: 10em;
+  }
+}
+
 .tabActive {
     border-bottom: 4px solid #007fff;
     padding-bottom: 0.5em;
@@ -112,7 +129,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center; 
-    padding: 10px; 
+    /* padding: 10px;  */
   }
   
   .leftNav {
