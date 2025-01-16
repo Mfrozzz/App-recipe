@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { SignInService } from "../service/SigninUserService";
 import styles from "../pages/css/SignIn.module.css";
-import { BsBoxArrowInDownLeft } from "react-icons/bs";
-import { FaSignInAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import NavBar from "../components/NavBar";
 
 function SignIn() {
     const [email, setEmail] = useState<string>('');
@@ -21,18 +19,7 @@ function SignIn() {
 
     return (
         <>
-            <nav>
-                <div className={styles.leftNav}>
-                    <Link to="/">
-                        Tasty🥐Pick
-                    </Link>
-                </div>
-                <div className={styles.rightNav}>
-                    {/* arrumar alinhamento icons */}
-                    <span className={styles.btnsRight}><FaSignInAlt /> <Link to="/signin">Sign in</Link></span>
-                    <span className={styles.btnsRight}><BsBoxArrowInDownLeft /> <Link to="/signup">Sign up</Link></span>
-                </div>
-            </nav>
+            <NavBar />
             <body className={styles.bodySignIn}>
                 <div className={styles.loginContainer}>
                     <h2>Login</h2>

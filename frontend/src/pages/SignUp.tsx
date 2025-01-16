@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { SignupService } from "../service/SignupUserService";
 import styles from "../pages/css/SignUp.module.css";
-import { BsBoxArrowInDownLeft } from "react-icons/bs";
-import { FaSignInAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import NavBar from "../components/NavBar";
 
 function SignUp() {
     const [email, setEmail] = useState<string>('');
@@ -22,17 +20,7 @@ function SignUp() {
 
     return (
         <>
-            <nav>
-                <div className={styles.leftNav}>
-                    <Link to="/">
-                        Tasty🥐Pick
-                    </Link>
-                </div>
-                <div className={styles.rightNav}>
-                    <span className={styles.btnsRight}><FaSignInAlt /> <Link to="/signin">Sign in</Link></span>
-                    <span className={styles.btnsRight}><BsBoxArrowInDownLeft /> <Link to="/signup">Sign up</Link></span>
-                </div>
-            </nav>
+            <NavBar />
             <body className={styles.bodySignUp}>
                 <div className={styles.signupContainer}>
                     <h2>Register</h2>
