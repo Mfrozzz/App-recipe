@@ -23,7 +23,9 @@ function SignIn() {
         <>
             <nav>
                 <div className={styles.leftNav}>
-                    Tasty🥐Pick
+                    <Link to="/">
+                        Tasty🥐Pick
+                    </Link>
                 </div>
                 <div className={styles.rightNav}>
                     {/* arrumar alinhamento icons */}
