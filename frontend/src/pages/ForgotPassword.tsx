@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./css/ForgotPassword.module.css";
 import NavBar from "../components/NavBar";
+import { RequestPasswordResetService } from "../service/RequestPasswordService";
 
 function ForgotPassword() {
     const [email, setEmail] = useState<string>('');
@@ -9,8 +10,9 @@ function ForgotPassword() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            // Chame o serviço de recuperação de senha aqui
+            const response = await RequestPasswordResetService({ email });
             console.log('Password reset email sent to:', email);
+            console.log('Response:', response);
         } catch (error) {
             console.error('Password reset failed:', error);
         }
