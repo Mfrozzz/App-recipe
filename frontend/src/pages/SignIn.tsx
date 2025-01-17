@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SignInService } from "../service/SigninUserService";
 import styles from "../pages/css/SignIn.module.css";
 import NavBar from "../components/NavBar";
+import { Link } from "react-router-dom";
 
 function SignIn() {
     const [email, setEmail] = useState<string>('');
@@ -22,7 +23,7 @@ function SignIn() {
             <NavBar />
             <body className={styles.bodySignIn}>
                 <div className={styles.loginContainer}>
-                    <h2>Login</h2>
+                    <h2>🥐 Login 🥐</h2>
                     <form onSubmit={handleSubmit} className={styles.formContainer}>
                         <div className={styles.formGroup}>
                             <label className={styles.labelLogin}>Email:</label>
@@ -45,6 +46,8 @@ function SignIn() {
                             />
                         </div>
                         <button type="submit" className={styles.loginBtn}>Login</button>
+                        <label className={styles.labelLogin}>Forgot your password? <Link to="/forgotPassword" className={styles.linkColor}>Click Here.</Link></label>
+                        <label className={styles.labelLogin}>Click <Link to="/signup" className={styles.linkColor}>Here </Link>to register.</label>
                     </form>
                 </div>
             </body>

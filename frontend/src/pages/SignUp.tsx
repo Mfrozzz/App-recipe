@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SignupService } from "../service/SignupUserService";
 import styles from "../pages/css/SignUp.module.css";
 import NavBar from "../components/NavBar";
+import { Link } from "react-router-dom";
 
 function SignUp() {
     const [email, setEmail] = useState<string>('');
@@ -23,7 +24,7 @@ function SignUp() {
             <NavBar />
             <body className={styles.bodySignUp}>
                 <div className={styles.signupContainer}>
-                    <h2>Register</h2>
+                    <h2>🥐 Register 🥐</h2>
                     <form onSubmit={handleSubmit} className={styles.formContainer}>
                         <div className={styles.formGroup}>
                             <label className={styles.labelSignUp}>Name:</label>
@@ -56,6 +57,7 @@ function SignUp() {
                             />
                         </div>
                         <button type="submit" className={styles.signupBtn}>Register</button>
+                        <label className={styles.labelSignUp}>Already registered? <Link to="/signin" className={styles.linkColor}>Click Here.</Link></label>
                     </form>
                 </div>
             </body>

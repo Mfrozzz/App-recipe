@@ -105,3 +105,13 @@ button.loginBtn:hover {
     background-color: #007fff;
     transform: scale(1.1);
   }
+
+.linkColor {
+    color: #007fff;
+    text-decoration: none;
+}
+
+.linkColor:hover {
+    text-decoration: underline;
+    color: #4a4a4a;
+}
