@@ -86,6 +86,37 @@ Authenticates a user and returns a JWT token.
     }
     ```
 
+#### POST `/api/recipe/requestPasswordReset`
+Requests a password reset for a user.
+- Request Body:
+    ```json
+    {
+        "email": "user@example.com"
+    }
+    ```
+- Response:
+    ```json
+    {
+        "message": "Password reset email sent"
+    }
+    ```
+
+#### POST `/api/recipe/resetPassword`
+Resets a user's password using a token.
+- Request Body:
+    ```json
+    {
+        "token": "jwt_token",
+        "newPassword": "new_password123"
+    }
+    ```
+- Response:
+    ```json
+    {
+        "message": "Password reset successful"
+    }
+    ```
+
 ### Recipes
 
 #### GET `/api/recipe/search`

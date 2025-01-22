@@ -40,10 +40,10 @@ The app has some prerequisites for getting started, including:
     ```shell
         docker run --name postgresql -e POSTGRES_PASSWORD=password -d -p 5432:5432 user
     ```
-    * --name: Define o nome do contêiner como "postgresql".
-    * -e POSTGRES_PASSWORD=password: Define a senha do usuário "postgres".
-    * -d: Executa o contêiner em segundo plano.
-    * -p 5432:5432: Mapeia a porta 5432 do contêiner para a porta 5432 do host.
+    * --name: Sets the container name to "postgresql".
+    * -e POSTGRES_PASSWORD=password: Sets the password for the "postgres" user.
+    * -d: Runs the container in the background.
+    * -p 5432:5432: Maps port 5432 of the container to port 5432 of the host.
 4. Initialize the Node.js environment for both frontend and backend
     ```shell
         cd backend

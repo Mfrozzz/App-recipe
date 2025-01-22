@@ -1,50 +1,102 @@
-# React + TypeScript + Vite
+# Front-end
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the front-end of the Tasty🥐Pick application, developed in React with TypeScript and Vite.
 
-Currently, two official plugins are available:
+## Table of Contents 📄
+* [Requirements](#requirements)
+* [Setting Up the Environment](#setting-up-the-environment)
+* [Scripts](#scripts)
+* [Folder Structure](#folder-structure)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## <span id="requirements">Requirements</span>
 
-## Expanding the ESLint configuration
+- Node.js
+- NPM or Yarn
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## <span id="setting-up-the-environment">Setting Up the Environment</span>
 
-- Configure the top-level `parserOptions` property like this:
+1. Clone the repository:
+    ```shell
+    git clone https://github.com/Mfrozzz/App-recipe.git
+    cd frontend
+    ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+2. Install the dependencies:
+    ```shell
+    npm install
+    # or
+    yarn install
+    ```
+
+3. Start the development server:
+    ```shell
+    npm run dev
+    # or
+    yarn dev
+    ```
+
+4. Open the browser and access:
+    ```
+    http://localhost:5173
+    ```
+
+## <span id="scripts">Scripts</span>
+
+- `npm run dev` or `yarn dev`: Starts the development server.
+- `npm run build` or `yarn build`: Compiles the project for production.
+- `npm run lint` or `yarn lint`: Runs the linter to check for code issues.
+- `npm run preview` or `yarn preview`: Previews the production build of the project.
+
+## <span id="folder-structure">Folder Structure</span>
 ```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+frontend/ 
+├── .gitignore 
+├── eslint.config.js 
+├── index.html 
+├── package.json 
+├── public/ 
+│ └── icon-croissant.svg 
+├── README-ptbr.md 
+├── README.md 
+├── src/ 
+│ ├── App.css 
+│ ├── App.tsx 
+│ ├── assets/ 
+│ ├── components/ 
+│ │ ├── EmptyFavouriteTab.tsx 
+│ │ ├── EmptyRecipeTab.tsx 
+│ │ ├── NavBar.tsx 
+│ │ ├── RecipeCard.tsx 
+│ │ └── RecipeModal.tsx 
+│ ├── main.tsx 
+│ ├── model/ 
+│ │ ├── Recipe.ts 
+│ │ ├── RecipeSummary.ts 
+│ │ └── User.ts 
+│ ├── pages/ 
+│ │ ├── css/ 
+│ │ │ ├── ForgotPassword.module.css 
+│ │ │ ├── RecipesPage.module.css 
+│ │ │ ├── SignIn.module.css 
+│ │ │ └── SignUp.module.css 
+│ │ ├── ForgotPassword.tsx 
+│ │ ├── RecipesPage.tsx 
+│ │ ├── SignIn.tsx 
+│ │ └── SignUp.tsx 
+│ ├── routes/ 
+│ │ └── Routes.tsx 
+│ ├── service/ 
+│ │ ├── AddFavouriteRecipeService.ts 
+│ │ ├── GetFavouriteRecipesService.ts 
+│ │ ├── GetRecipeSummaryService.ts 
+│ │ ├── RemoveFavouriteRecipeService.ts 
+│ │ ├── RequestPasswordService.ts 
+│ │ ├── ResetPasswordService.ts 
+│ │ ├── SearchRecipesService.ts 
+│ │ └── SignupUserService.ts 
+│ ├── vite-env.d.ts 
+├── tsconfig.app.json 
+├── tsconfig.json 
+├── tsconfig.node.json 
+└── vite.config.ts
 ```
