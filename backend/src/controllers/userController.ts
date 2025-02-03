@@ -62,13 +62,12 @@ const sendResetEmail = async (email: string, token: string) => {
             pass: process.env.EMAIL_PASS,
         },
     });
-    // provavelmente trocar o service de gmail para outro - talvez ethereal mail err 535
 
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: email,
         subject: 'Password Reset',
-        text: `You requested a password reset. Please use the following token to reset your password: ${token}`,
+        text: `You requested a password reset. Please use the following URL to reset your password: http://localhost:5173/resetPassword/${token}`,
     };
 
     await transporter.sendMail(mailOptions);
@@ -99,8 +98,12 @@ export const resetPasswordHandler = async (req: Request, res: Response) => {
         const hashedPassword = await bcrypt.hash(newPassword, 8);
 
         await prismaClient.user.update({
-            where: { id: decoded.userId },
-            data: { password: hashedPassword },
+            where: {
+                id: decoded.userId 
+            },
+            data: { 
+                password: hashedPassword 
+            },
         });
 
         return res.status(200).json({ message: 'Password reset successful' }) as any;

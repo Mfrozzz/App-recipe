@@ -10,11 +10,10 @@ function ForgotPassword() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await RequestPasswordResetService({ email });
-            console.log('Password reset email sent to:', email);
-            console.log('Response:', response);
+            await RequestPasswordResetService({ email });
+            alert(`Password reset email sent to: ${email}`);
         } catch (error) {
-            console.error('Password reset failed:', error);
+            alert(`Password reset failed: ${error}`);
         }
     };
 

@@ -12,10 +12,10 @@ function SignUp() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await SignupService({ email, password, name });
-            console.log('Signup successful:', response);
+            await SignupService({ email, password, name });
+            alert('Signup successful');
         } catch (error) {
-            console.error('Signup failed:', error);
+            alert(`Signup failed: ${error}`);
         }
     };
 

@@ -11,10 +11,10 @@ function SignIn() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const response = await SignInService({ email, password });
-            console.log('Login successful:', response);
+            await SignInService({ email, password });
+            alert('Login successful');
         } catch (error) {
-            console.error('Login failed:', error);
+            alert(`Login failed: ${error}`);
         }
     };
 
