@@ -5,11 +5,14 @@ Tasty Pick is an app that allows users to view recipes from a database, as well 
 This app is built with a separation of frontend and backend, where the frontend is developed using React (TypeScript template) and Vite, while the backend is developed in Node.js with TypeScript using libraries like CORS, Express, Prisma, and Nodemon.  
 <br>  
 ## Table of Contents 📄  
+
 * [Requirements](#requirements)  
 * [Setting up the environment](#setting-up)  
 * [Backend](#backend)  
 * [Frontend](#frontend)  
 * [More Information](#more-info)  
+* [PT-BR version](https://github.com/Mfrozzz/App-recipe/blob/master/README-ptbr.md)
+
 <br>  
 
 ## <span id="requirements">Requirements</span>

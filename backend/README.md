@@ -8,6 +8,7 @@ This is the back-end of the Tasty🥐Pick app, developed in Node.js with TypeScr
 * [Endpoints](#endpoints)
 * [Scripts](#scripts)
 * [Folder Structure](#folder-structure)
+* [PT-BR version](https://github.com/Mfrozzz/App-recipe/blob/master/backend/README-ptbr.md)
 
 ## <span id="requirements">Requirements</span>
 

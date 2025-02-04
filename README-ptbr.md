@@ -6,11 +6,14 @@ O Tasty Pick é um app que permite a visualização de receitas dentro de um ban
 Esse app é construido a partir da divisão de frontend e backend, sendo o frontend construido em React (template de TypeScript) e Vite. Enquanto o backend é desenvolvido em node com TypeScript utilizando as bibliotecas cors, express, prisma e nodemon.
 <br>
 ## Sumário 📄
+
 * [Requisitos](#requisitos);
 * [Configurando ambiente](#setting-up);
 * [Backend](#backend);
 * [Frontend](#frontend);
 * [Mais Informações](#more-info);
+* [Versão EN-US](https://github.com/Mfrozzz/App-recipe/blob/master/README.md)
+
 <br>
 <br>
 

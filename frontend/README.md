@@ -7,6 +7,7 @@ This is the front-end of the Tasty🥐Pick application, developed in React with 
 * [Setting Up the Environment](#setting-up-the-environment)
 * [Scripts](#scripts)
 * [Folder Structure](#folder-structure)
+* [PT-BR version](https://github.com/Mfrozzz/App-recipe/blob/master/frontend/README-ptbr.md)
 
 ## <span id="requirements">Requirements</span>
 

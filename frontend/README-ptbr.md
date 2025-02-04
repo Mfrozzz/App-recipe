@@ -7,6 +7,7 @@ Este é o front-end do aplicativo Tasty🥐Pick, desenvolvido em React com TypeS
 * [Configurando Ambiente](#configurando-ambiente)
 * [Scripts](#scripts)
 * [Estrutura de Pastas](#estrutura-de-pastas)
+* [Versão EN-US](https://github.com/Mfrozzz/App-recipe/blob/master/frontend/README.md)
 
 ## <span id="requisitos">Requisitos</span>
 

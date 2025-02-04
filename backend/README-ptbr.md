@@ -8,6 +8,7 @@ Este é o back-end do aplicativo Tasty🥐Pick, desenvolvido em Node.js com Type
 * [Endpoints](#endpoints)
 * [Scripts](#scripts)
 * [Estrutura de Pastas](#estrutura-de-pastas)
+* [Versão EN-US](https://github.com/Mfrozzz/App-recipe/blob/master/backend/README.md)
 
 ## <span id="requisitos">Requisitos</span>
 
