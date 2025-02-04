@@ -1,17 +1,19 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./css/ForgotPassword.module.css";
 import NavBar from "../components/NavBar";
 import { RequestPasswordResetService } from "../service/RequestPasswordService";
 
 function ForgotPassword() {
     const [email, setEmail] = useState<string>('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             await RequestPasswordResetService({ email });
             alert(`Password reset email sent to: ${email}`);
+            navigate('/signin');
         } catch (error) {
             alert(`Password reset failed: ${error}`);
         }

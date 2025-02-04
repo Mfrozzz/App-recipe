@@ -2,17 +2,19 @@ import { useState } from "react";
 import { SignInService } from "../service/SigninUserService";
 import styles from "../pages/css/SignIn.module.css";
 import NavBar from "../components/NavBar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignIn() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             await SignInService({ email, password });
             alert('Login successful');
+            navigate('/');
         } catch (error) {
             alert(`Login failed: ${error}`);
         }

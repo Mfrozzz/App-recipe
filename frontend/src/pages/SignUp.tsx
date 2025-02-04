@@ -2,18 +2,20 @@ import { useState } from "react";
 import { SignupService } from "../service/SignupUserService";
 import styles from "../pages/css/SignUp.module.css";
 import NavBar from "../components/NavBar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignUp() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [name, setName] = useState<string>('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             await SignupService({ email, password, name });
             alert('Signup successful');
+            navigate('/signin');
         } catch (error) {
             alert(`Signup failed: ${error}`);
         }

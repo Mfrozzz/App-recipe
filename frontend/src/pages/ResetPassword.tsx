@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ResetPasswordService } from "../service/ResetPasswordService";
 import styles from "./css/ForgotPassword.module.css";
 import NavBar from "../components/NavBar";
@@ -8,6 +8,7 @@ function ResetPassword() {
     const { token } = useParams<{ token: string }>();
     const [newPassword, setNewPassword] = useState<string>("");
     const [confirmPassword, setConfirmPassword] = useState<string>("");
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -24,6 +25,7 @@ function ResetPassword() {
         try {
             await ResetPasswordService({ token, newPassword });
             alert("Password reset successfully");
+            navigate("/signin");
         } catch (error) {
             alert("Failed to reset password");
         }
