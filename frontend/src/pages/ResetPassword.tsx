@@ -33,7 +33,7 @@ function ResetPassword() {
 
     return (
         <>
-            <NavBar />
+            <NavBar isLogged={false}/>
             <div className={styles.bodyForgotPassword}>
                 <div className={styles.forgotPasswordContainer}>
                     <h2>🥐 Reset Password 🥐</h2>

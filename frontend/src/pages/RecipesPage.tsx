@@ -83,7 +83,7 @@ function RecipesPage() {
 
     return (
         <div className={styles.appContainer}>
-            <NavBar />
+            <NavBar isLogged={false}/>
             <div className={styles.header}>
                 <img src="../public/hero-image.jpg" alt="Food Banner" />
                 <div className={styles.title}>Tasty🥐Pick</div>

@@ -21,7 +21,7 @@ function ForgotPassword() {
 
     return (
         <>
-            <NavBar />
+            <NavBar isLogged={false}/>
             <div className={styles.bodyForgotPassword}>
                 <div className={styles.forgotPasswordContainer}>
                     <h2>🥐 Forgot Password 🥐</h2>

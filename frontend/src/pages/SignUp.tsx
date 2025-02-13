@@ -23,7 +23,7 @@ function SignUp() {
 
     return (
         <>
-            <NavBar />
+            <NavBar isLogged={false}/>
             <body className={styles.bodySignUp}>
                 <div className={styles.signupContainer}>
                     <h2>🥐 Register 🥐</h2>

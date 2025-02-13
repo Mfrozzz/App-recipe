@@ -8,11 +8,13 @@ function SignIn() {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const navigate = useNavigate();
+    let userToken: any = null;
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            await SignInService({ email, password });
+            userToken = await SignInService({ email, password });
+            setToken();
             alert('Login successful');
             navigate('/');
         } catch (error) {
@@ -20,9 +22,14 @@ function SignIn() {
         }
     };
 
+    const setToken = () => {
+        localStorage.setItem("token", userToken);
+        // console.log(userToken);
+    };
+
     return (
         <>
-            <NavBar />
+            <NavBar isLogged={false}/>
             <body className={styles.bodySignIn}>
                 <div className={styles.loginContainer}>
                     <h2>🥐 Login 🥐</h2>
