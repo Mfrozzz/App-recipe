@@ -26,7 +26,7 @@ function SignIn() {
             userToken = await SignInService(data);
             setToken();
             alert('Login successful');
-            navigate('/');
+            navigate('/recipes');
         } catch (error) {
             alert(`Login failed: ${error}`);
         }
