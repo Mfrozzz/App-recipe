@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { searchRecipesHandler, getRecipeSummaryHandler, getFavouriteRecipesHandler, addFavouriteRecipeHandler, deleteFavouriteRecipeHandler } from '../controllers/recipeController';
-import { signupHandler, loginHandler, requestPasswordResetHandler, resetPasswordHandler } from '../controllers/userController';
+import { signupHandler, loginHandler, requestPasswordResetHandler, resetPasswordHandler, getUserInfoHandler } from '../controllers/userController';
 
 const router = Router();
 
@@ -14,5 +14,6 @@ router.delete("/api/recipe/favourite", deleteFavouriteRecipeHandler);
 
 router.post("/api/recipe/requestPasswordReset", requestPasswordResetHandler);
 router.post("/api/recipe/resetPassword", resetPasswordHandler);
+router.get("/api/recipe/user/info", getUserInfoHandler);
 
 export default router;

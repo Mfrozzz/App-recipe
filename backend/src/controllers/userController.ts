@@ -111,3 +111,31 @@ export const resetPasswordHandler = async (req: Request, res: Response) => {
         return res.status(400).json({ error: 'Invalid or expired token' });
     }
 };
+
+interface JwtPayload {
+    userId: number;
+}
+
+export const getUserInfoHandler = async (req: Request, res: Response) => {
+    const authToken = req.headers.authorization;
+
+    if (!authToken) {
+        return res.status(401).json({ error: 'No token provided' });
+    }
+
+    const token = authToken?.split(' ')[1];
+
+    try{
+        const decoded = jwt.verify(token, process.env.SECRET_KEY!) as JwtPayload;
+        const user = await prismaClient.user.findUnique({ where: { id: decoded.userId } });
+
+        if (!user) {
+            return res.status(401).json({ error: 'User not found' });
+        }
+
+        return res.json(user) as any;
+    }catch(error){
+        return res.status(401).json({ error: 'Invalid token' });
+    }
+
+}
