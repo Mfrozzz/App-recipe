@@ -20,8 +20,11 @@ export const getRecipeSummaryHandler = async (req: Request, res: Response) => {
 };
 
 export const getFavouriteRecipesHandler = async (req: Request, res: Response) => {
+    const userId = req.params.userId;
     try {
-        const favouriteRecipes = await prismaClient.favouriteRecipes.findMany();
+        const favouriteRecipes = await prismaClient.favouriteRecipes.findMany({
+            where: { userId: parseInt(userId) },
+        });
         const recipeIds = favouriteRecipes.map((recipe) => recipe.recipeId.toString());
         const favourites = await getFavouriteRecipesByIds(recipeIds);
         return res.json(favourites) as any;
@@ -38,8 +41,8 @@ export const addFavouriteRecipeHandler = async (req: Request, res: Response) => 
     try {
         const favouriteRecipe = await prismaClient.favouriteRecipes.create({
             data: {
-                recipeId: recipeId,
-                userId: userId
+                userId: userId,
+                recipeId: recipeId
             }
         });
         return res.status(201).json(favouriteRecipe) as any;

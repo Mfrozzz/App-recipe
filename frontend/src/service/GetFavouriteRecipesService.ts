@@ -1,5 +1,5 @@
-const GetFavouriteRecipesService = async () => {
-    const urlBase = new URL("http://localhost:5000/api/recipe/favourite");
+const GetFavouriteRecipesService = async (userId: string) => {
+    const urlBase = new URL(`http://localhost:5000/api/recipe/favourite/${userId}`);
     const response = await fetch(urlBase);
     if (!response.ok) {
         throw new Error(`HTTP Error: Status: ${response.status}`);

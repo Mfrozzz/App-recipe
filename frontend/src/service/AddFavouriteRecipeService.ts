@@ -1,9 +1,11 @@
 import Recipe from "../model/Recipe";
+import User from "../model/User";
 
-const AddFavouriteRecipeService = async (recipe: Recipe) => {
+const AddFavouriteRecipeService = async (recipe: Recipe, user: User) => {
     const urlBase = new URL("http://localhost:5000/api/recipe/favourite");
-    // add userId
+
     const req = {
+        userId: user.id,
         recipeId: recipe.id
     }
 
