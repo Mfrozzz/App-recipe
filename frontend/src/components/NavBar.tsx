@@ -44,13 +44,12 @@ function NavBar({isLogged, userName}: Props) {
         <div>
             <nav>
                 <div className={styles.leftNav}>
-                    <Link to="/">
+                    <Link to={ isLogged ? "/recipes" : "/" }>
                         Tasty🥐Pick
                     </Link>
                 </div>
                 <div className={styles.rightNav}>
-                    {
-                        !isLogged ? (
+                    {!isLogged ? (
                             <>
                                 <span className={styles.btnsRight}><FaSignInAlt /> <Link to="/signin">Sign in</Link></span>
                                 <span className={styles.btnsRight}><BsBoxArrowInDownLeft /> <Link to="/signup">Sign up</Link></span>

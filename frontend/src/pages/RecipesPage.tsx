@@ -12,6 +12,8 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import EmptyFavouriteTab from '../components/EmptyFavouriteTab';
 import NavBar from '../components/NavBar';
 import EmptyRecipeTab from '../components/EmptyRecipeTab';
+import User from '../model/User';
+import { GetUserInfoService } from '../service/GetUserInfoService';
 
 type Tabs = "search" | "favourites";
 
@@ -23,11 +25,24 @@ function RecipesPage() {
     const [favouriteRecipes, setFavouriteRecipes] = useState<Recipe[]>([]);
     const pageNumber = useRef(1);
     const [searchPerformed, setSearchPerformed] = useState<boolean>(false);
+    const [user, setUser] = useState<any>(null);
+    let isLogged = false;
 
     useEffect(() => {
+        GetUserInfoService().then((data) => {
+            setUser(data);
+        }).catch((err) => {
+            console.log(err);
+        });
+
+        if(user){
+            isLogged = true;
+        } else {
+            isLogged = false;
+        }
         const fetchFavouriteRecipes = async () => {
             try {
-                const favouriteRecipes = await GetFavouriteRecipesService();
+                const favouriteRecipes = await GetFavouriteRecipesService(user.id);
                 setFavouriteRecipes(favouriteRecipes.results);
             } catch (error) {
                 console.log(error);
@@ -60,18 +75,18 @@ function RecipesPage() {
         }
     }
 
-    const addFavoriteRecipe = async (recipe: Recipe) => {
+    const addFavoriteRecipe = async (recipe: Recipe, user: User) => {
         try {
-            await AddFavouriteRecipeService(recipe);
+            await AddFavouriteRecipeService(recipe, user);
             setFavouriteRecipes([...favouriteRecipes, recipe]);
         } catch (error) {
             console.log(error);
         }
     };
 
-    const removeFavouriteRecipe = async (recipe: Recipe) => {
+    const removeFavouriteRecipe = async (recipe: Recipe, user: User) => {
         try {
-            await RemoveFavouriteRecipeService(recipe);
+            await RemoveFavouriteRecipeService(recipe, user);
             const updatedRecipes = favouriteRecipes.filter(
                 (favoriteRecipe) => recipe.id !== favoriteRecipe.id
             );
@@ -83,7 +98,7 @@ function RecipesPage() {
 
     return (
         <div className={styles.appContainer}>
-            <NavBar isLogged={false}/>
+            <NavBar isLogged={isLogged}/>
             <div className={styles.header}>
                 <img src="../public/hero-image.jpg" alt="Food Banner" />
                 <div className={styles.title}>Tasty🥐Pick</div>
@@ -118,6 +133,7 @@ function RecipesPage() {
                                     <RecipeCard
                                         key={recipe.id}
                                         recipe={recipe}
+                                        user={user}
                                         onClick={() => setSelectedRecipe(recipe)}
                                         onFavouriteButtonClick={isFavorite ? removeFavouriteRecipe : addFavoriteRecipe}
                                         isFavorite={isFavorite}
@@ -136,6 +152,7 @@ function RecipesPage() {
                             favouriteRecipes.map((recipe) =>
                                 <RecipeCard
                                     recipe={recipe}
+                                    user={user}
                                     onClick={() => setSelectedRecipe(recipe)}
                                     onFavouriteButtonClick={removeFavouriteRecipe}
                                     isFavorite={true}
