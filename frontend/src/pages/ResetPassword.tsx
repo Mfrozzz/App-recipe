@@ -13,12 +13,9 @@ interface FormData {
 function ResetPassword() {
     const { token } = useParams<{ token: string }>();
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
-    // const [newPassword, setNewPassword] = useState<string>("");
-    // const [confirmPassword, setConfirmPassword] = useState<string>("");
     const navigate = useNavigate();
 
     const onSubmit = async (data: FormData) => {
-        // e.preventDefault();
         if (!token) {
             alert("Invalid token");
             return;
@@ -49,10 +46,8 @@ function ResetPassword() {
                             <label className={styles.labelForgotPassword}>New Password:</label>
                             <input
                                 type="password"
-                                // value={newPassword}
                                 {...register("newPassword", { required: "New password is required", minLength: { value: 6, message: "Password must be at least 6 characters" } })}
                                 className={styles.inputForgotPassword}
-                                // onChange={(e) => setNewPassword(e.target.value)}
                                 required
                             />
                             {errors.newPassword && <div className={styles.error}>{errors.newPassword.message}</div>}
@@ -61,10 +56,8 @@ function ResetPassword() {
                             <label className={styles.labelForgotPassword}>Confirm Password:</label>
                             <input
                                 type="password"
-                                // value={confirmPassword}
                                 {...register("confirmPassword", { required: "Confirm password is required", minLength: { value: 6, message: "Password must be at least 6 characters" } })}
                                 className={styles.inputForgotPassword}
-                                // onChange={(e) => setConfirmPassword(e.target.value)}
                                 required
                             />
                             {errors.confirmPassword && <div className={styles.error}>{errors.confirmPassword.message}</div>}

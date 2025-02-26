@@ -1,6 +1,6 @@
 import { BsBoxArrowInDownLeft } from "react-icons/bs";
 import { FaCaretDown, FaSignInAlt } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "../pages/css/RecipesPage.module.css";
 import { useState } from "react";
 import { FaAddressBook, FaArrowRightFromBracket, FaCircleUser } from "react-icons/fa6";
@@ -12,11 +12,12 @@ interface Props{
 
 function NavBar({isLogged, userName}: Props) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const navigate = useNavigate();
 
     const logout = () => {
         localStorage.removeItem("token");
         isLogged = false;
-        window.location.reload();
+        navigate("/");
     };
     
     const toggleDropdown = () => {

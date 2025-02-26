@@ -12,16 +12,11 @@ interface FormData {
 }
 
 function SignUp() {
-    // const [email, setEmail] = useState<string>('');
-    // const [password, setPassword] = useState<string>('');
-    // const [name, setName] = useState<string>('');
-
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
     const navigate = useNavigate();
 
     const onSubmit = async (data: FormData) => {
-        // e.preventDefault();
         try {
             await SignupService(data);
             alert('Signup successful');
@@ -42,10 +37,8 @@ function SignUp() {
                             <label className={styles.labelSignUp}>Name:</label>
                             <input
                                 type="text"
-                                // value={name}
                                 {...register("name", { required: "Name is required" })}
                                 className={styles.inputSignUp}
-                                // onChange={(e) => setName(e.target.value)}
                                 required
                             />
                             {errors.name && <div className={styles.error}>{errors.name.message}</div>}
@@ -54,10 +47,8 @@ function SignUp() {
                             <label className={styles.labelSignUp}>Email:</label>
                             <input
                                 type="email"
-                                // value={email}
                                 {...register("email", { required: "Email is required", pattern: { value: /^\S+@\S+$/i, message: "Invalid email address" } })}
                                 className={styles.inputSignUp}
-                                // onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
                             {errors.email && <div className={styles.error}>{errors.email.message}</div>}
@@ -66,10 +57,8 @@ function SignUp() {
                             <label className={styles.labelSignUp}>Password:</label>
                             <input
                                 type="password"
-                                // value={password}
                                 {...register("password", { required: "Password is required", minLength: { value: 6, message: "Password must be at least 6 characters" } })}
                                 className={styles.inputSignUp}
-                                // onChange={(e) => setPassword(e.target.value)}
                                 required
                             />
                             {errors.password && <div className={styles.error}>{errors.password.message}</div>}

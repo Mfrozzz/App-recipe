@@ -10,17 +10,13 @@ interface FormData {
 }
 
 function ForgotPassword() {
-    // const [email, setEmail] = useState<string>('');
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
     const navigate = useNavigate();
 
     const onSubmit = async (data: FormData) => {
-        // e.preventDefault();
         try {
             await RequestPasswordResetService(data);
-            // await RequestPasswordResetService({ email });
             alert(`Password reset email sent to: ${data.email}`);
-            // alert(`Password reset email sent to: ${email}`);
             navigate('/signin');
         } catch (error) {
             alert(`Password reset failed: ${error}`);
@@ -38,10 +34,8 @@ function ForgotPassword() {
                             <label className={styles.labelForgotPassword}>Email:</label>
                             <input
                                 type="email"
-                                // value={email}
                                 {...register("email", { required: "Email is required", pattern: { value: /^\S+@\S+$/i, message: "Invalid email address" } })}
                                 className={styles.inputForgotPassword}
-                                // onChange={(e) => setEmail(e.target.value)}
                                 required
                             />
                             {errors.email && <div className={styles.error}>{errors.email.message}</div>}

@@ -2,6 +2,11 @@ import Recipe from "../model/Recipe";
 import User from "../model/User";
 
 const RemoveFavouriteRecipeService = async (recipe: Recipe, user:User) => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        throw new Error("Token not found");
+    }
+
     const urlBase = new URL("http://localhost:5000/api/recipe/favourite");
 
     const req = {
@@ -12,7 +17,8 @@ const RemoveFavouriteRecipeService = async (recipe: Recipe, user:User) => {
     const res = await fetch(urlBase, {
         method: "DELETE",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify(req)
     });

@@ -14,6 +14,7 @@ import NavBar from '../components/NavBar';
 import EmptyRecipeTab from '../components/EmptyRecipeTab';
 import User from '../model/User';
 import { GetUserInfoService } from '../service/GetUserInfoService';
+import { useNavigate } from 'react-router-dom';
 
 type Tabs = "search" | "favourites";
 
@@ -27,31 +28,37 @@ function RecipesPage() {
     const [searchPerformed, setSearchPerformed] = useState<boolean>(false);
     const [user, setUser] = useState<any>(null);
     const [isLogged, setIsLogged] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const token = localStorage.getItem("token");
+        if(!token){
+            navigate("/signin");
+        }
         GetUserInfoService(token).then((data) => {
-            console.log(data);
             setUser(data);
         }).catch((err) => {
             console.log(err);
         });
+    }, []);
 
+    useEffect(() => {
         if(user){
             setIsLogged(true);
+            fetchFavouriteRecipes();
         } else {
             setIsLogged(false);
         }
-        const fetchFavouriteRecipes = async () => {
-            try {
-                const favouriteRecipes = await GetFavouriteRecipesService(user.id);
-                setFavouriteRecipes(favouriteRecipes.results);
-            } catch (error) {
-                console.log(error);
-            }
+    },[user]);
+
+    const fetchFavouriteRecipes = async () => {
+        try {
+            const favouriteRecipes = await GetFavouriteRecipesService(user.id);
+            setFavouriteRecipes(favouriteRecipes.results);
+        } catch (error) {
+            console.log(error);
         }
-        fetchFavouriteRecipes();
-    }, []);
+    }
 
     const handleSearchSubmit = async (event: FormEvent) => {
         event.preventDefault();
@@ -100,7 +107,7 @@ function RecipesPage() {
 
     return (
         <div className={styles.appContainer}>
-            <NavBar isLogged={isLogged} userName={user.name}/>
+            <NavBar isLogged={isLogged} userName={user?.name}/>
             <div className={styles.header}>
                 <img src="../public/hero-image.jpg" alt="Food Banner" />
                 <div className={styles.title}>Tasty🥐Pick</div>
