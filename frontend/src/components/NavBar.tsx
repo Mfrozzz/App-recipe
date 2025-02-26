@@ -2,9 +2,8 @@ import { BsBoxArrowInDownLeft } from "react-icons/bs";
 import { FaCaretDown, FaSignInAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styles from "../pages/css/RecipesPage.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FaAddressBook, FaArrowRightFromBracket, FaCircleUser } from "react-icons/fa6";
-import { GetUserInfoService } from "../service/GetUserInfoService";
 
 interface Props{
     isLogged: boolean;
@@ -13,22 +12,6 @@ interface Props{
 
 function NavBar({isLogged, userName}: Props) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const [user, setUser] = useState<any>(null);
-
-    useEffect(() => {
-        GetUserInfoService().then((data) => {
-            setUser(data);
-        }).catch((err) => {
-            console.log(err);
-        });
-
-        if(user){
-            isLogged = true;
-            userName = user.username;
-        } else {
-            isLogged = false;
-        }
-    },[isLogged]);
 
     const logout = () => {
         localStorage.removeItem("token");

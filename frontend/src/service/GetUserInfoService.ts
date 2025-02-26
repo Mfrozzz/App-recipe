@@ -1,15 +1,15 @@
-const GetUserInfoService = async () => {
+const GetUserInfoService = async (token:any) => {
 
-    const token = localStorage.getItem("token");
     if (!token) {
         throw new Error("Token not found");
     }
     
-    const urlBase = new URL("http://localhost:5000/api/recipe/userInfo");
+    const urlBase = new URL("http://localhost:5000/api/recipe/user/info");
     const res = await fetch(urlBase, {
         method: "GET",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
         }
     });
 

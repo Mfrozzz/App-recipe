@@ -24,17 +24,12 @@ function SignIn() {
         try {
             // userToken = await SignInService({ email, password });
             userToken = await SignInService(data);
-            setToken();
+            localStorage.setItem("token", userToken.token);
             alert('Login successful');
             navigate('/recipes');
         } catch (error) {
             alert(`Login failed: ${error}`);
         }
-    };
-
-    const setToken = () => {
-        localStorage.setItem("token", userToken);
-        // console.log(userToken);
     };
 
     return (

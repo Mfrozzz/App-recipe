@@ -26,19 +26,21 @@ function RecipesPage() {
     const pageNumber = useRef(1);
     const [searchPerformed, setSearchPerformed] = useState<boolean>(false);
     const [user, setUser] = useState<any>(null);
-    let isLogged = false;
+    const [isLogged, setIsLogged] = useState<boolean>(false);
 
     useEffect(() => {
-        GetUserInfoService().then((data) => {
+        const token = localStorage.getItem("token");
+        GetUserInfoService(token).then((data) => {
+            console.log(data);
             setUser(data);
         }).catch((err) => {
             console.log(err);
         });
 
         if(user){
-            isLogged = true;
+            setIsLogged(true);
         } else {
-            isLogged = false;
+            setIsLogged(false);
         }
         const fetchFavouriteRecipes = async () => {
             try {
@@ -98,7 +100,7 @@ function RecipesPage() {
 
     return (
         <div className={styles.appContainer}>
-            <NavBar isLogged={isLogged}/>
+            <NavBar isLogged={isLogged} userName={user.name}/>
             <div className={styles.header}>
                 <img src="../public/hero-image.jpg" alt="Food Banner" />
                 <div className={styles.title}>Tasty🥐Pick</div>
