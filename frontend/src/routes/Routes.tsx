@@ -5,6 +5,7 @@ import SignUp from '../pages/SignUp';
 import ForgotPassword from '../pages/ForgotPassword';
 import ResetPassword from '../pages/ResetPassword';
 import HomePage from '../pages/HomePage';
+import UserProfile from '../pages/UserProfile';
 
 function RoutesApp() {
     return (
@@ -15,6 +16,7 @@ function RoutesApp() {
             <Route path='/signup' element={<SignUp />} />
             <Route path='/forgotPassword' element={<ForgotPassword />} />
             <Route path='/resetPassword/:token' element={<ResetPassword />} />
+            <Route path='/profile' element={<UserProfile/>}/>
         </Routes>
     );
 }

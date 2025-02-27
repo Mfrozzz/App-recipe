@@ -110,7 +110,7 @@ function RecipesPage() {
             <NavBar isLogged={isLogged} userName={user?.name}/>
             <div className={styles.header}>
                 <img src="../public/hero-image.jpg" alt="Food Banner" />
-                <div className={styles.title}>Tasty🥐Pick</div>
+                <div className={styles.title}>Recipes🥐Page</div>
             </div>
             <div>
                 <div className={styles.tabs}>
