@@ -47,6 +47,7 @@ function UserProfile() {
         try {
             await UpdateUserInfoService(token, data);
             alert("User information updated successfully");
+            window.location.reload();
         } catch (error) {
             console.log(error);
             alert("Failed to update user information");
@@ -66,8 +67,17 @@ function UserProfile() {
             </div>
             {selectedTab === "view" && (
                 <div className={styles.infoContainer}>
-                    <p><strong>Name:</strong> {user?.name}</p>
-                    <p><strong>Email:</strong> {user?.email}</p>
+                    <div className={styles.infoCard}>
+                        <h2>User Information</h2>
+                        <div className={styles.infoRow}>
+                            <span className={styles.infoLabel}>Name:</span>
+                            <span className={styles.infoValue}>{user?.name}</span>
+                        </div>
+                        <div className={styles.infoRow}>
+                            <span className={styles.infoLabel}>Email:</span>
+                            <span className={styles.infoValue}>{user?.email}</span>
+                        </div>
+                    </div>
                 </div>
             )}
             {selectedTab === "update" && (

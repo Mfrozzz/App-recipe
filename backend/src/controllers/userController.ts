@@ -10,7 +10,9 @@ dotenv.config();
 const prismaClient = new PrismaClient();
 
 const generateToken = (userId: number) => {
-    return jwt.sign({ userId }, process.env.SECRET_KEY!, { expiresIn: '1h' });
+    return jwt.sign({
+        userId 
+    }, process.env.SECRET_KEY!, { expiresIn: '1h' });
 };
 
 export const signupHandler = async (req: Request, res: Response) => {
@@ -37,7 +39,9 @@ export const loginHandler = async (req: Request, res: Response) => {
     const { email, password } = req.body;
 
     const user = await prismaClient.user.findUnique({
-        where: { email },
+        where: {
+            email 
+        },
     });
 
     if (!user) {
@@ -77,7 +81,9 @@ export const requestPasswordResetHandler = async (req: Request, res: Response) =
     const { email } = req.body;
 
     const user = await prismaClient.user.findUnique({
-        where: { email },
+        where: {
+            email 
+        },
     });
 
     if (!user) {
@@ -127,7 +133,11 @@ export const getUserInfoHandler = async (req: Request, res: Response) => {
 
     try{
         const decoded = jwt.verify(token, process.env.SECRET_KEY!) as JwtPayload;
-        const user = await prismaClient.user.findUnique({ where: { id: decoded.userId } });
+        const user = await prismaClient.user.findUnique({ 
+            where: {
+                id: decoded.userId 
+            } 
+        });
 
         if (!user) {
             return res.status(401).json({ error: 'User not found' });
@@ -139,3 +149,31 @@ export const getUserInfoHandler = async (req: Request, res: Response) => {
     }
 
 }
+
+export const updateUserInfoHandler = async (req: Request, res: Response) => {
+    const authToken = req.headers.authorization;
+
+    if (!authToken) {
+        return res.status(401).json({ error: 'No token provided' });
+    }
+
+    const token = authToken?.split(' ')[1];
+    const { name, email } = req.body;
+
+    try{
+        const decoded = jwt.verify(token, process.env.SECRET_KEY!) as JwtPayload;
+        const user = await prismaClient.user.update({
+            where: {
+                id: decoded.userId 
+            },
+            data: {
+                name, 
+                email 
+            },
+        });
+
+        return res.json(user) as any;
+    }catch(error){
+        return res.status(401).json({ error: 'Invalid token' });
+    }
+};

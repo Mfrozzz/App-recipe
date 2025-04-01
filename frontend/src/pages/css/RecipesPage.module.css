@@ -293,3 +293,79 @@ body {
 .dropdownContent a:hover {
   background-color: #f1f1f1;
 }
+
+/* Responsividade */
+@media (max-width: 768px) {
+  nav {
+      flex-direction: column;
+      align-items: normal;
+  }
+
+  .rightNav {
+      flex-direction: column;
+      margin-top: 5px;
+      align-items: flex-start;
+      gap: 10px;
+  }
+
+  .btnsRight {
+      font-size: 0.9rem;
+  }
+
+  .leftNav {
+      font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+      padding: 10px;
+  }
+
+  .leftNav {
+      font-size: 1rem;
+  }
+
+  .btnsRight {
+      font-size: 0.8rem;
+  }
+
+  .dropdownContent {
+      width: 100%;
+      left: 0;
+      right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .title {
+      font-size: 1.5rem; 
+  }
+}
+
+@media (max-width: 480px) {
+
+  .title {
+      font-size: 1.2rem; 
+  }
+}
+
+@media (max-width: 768px) {
+  .tabs {
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  .tabs h1 {
+      font-size: 1rem;
+      padding: 8px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tabs h1 {
+      font-size: 0.9rem;
+      padding: 6px 10px;
+  }
+}
