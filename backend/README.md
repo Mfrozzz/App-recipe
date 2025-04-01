@@ -35,6 +35,8 @@ This is the back-end of the Tasty🥐Pick app, developed in Node.js with TypeScr
     DATABASE_URL="postgresql://user:password@localhost:5432/database_name"
     API_KEY=your_api_key
     SECRET_KEY="your_encryption_key"
+    EMAIL_USER="email@mail.com"
+    EMAIL_PASS="password"
     ```
 
 4. Set up Prisma:
@@ -155,6 +157,8 @@ Gets the summary of a specific recipe.
 
 #### GET `/api/recipe/favourite`
 Gets all the user's favourite recipes.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
 - Response:
     ```json
     {
@@ -170,6 +174,8 @@ Gets all the user's favourite recipes.
 
 #### POST `/api/recipe/favourite`
 Adds a recipe to the user's favourites.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
 - Request Body:
     ```json
     {
@@ -188,6 +194,8 @@ Adds a recipe to the user's favourites.
 
 #### DELETE `/api/recipe/favourite`
 Removes a recipe from the user's favourites.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
 - Request Body:
     ```json
     {
@@ -202,6 +210,42 @@ Removes a recipe from the user's favourites.
     }
     ```
 
+### User Profile
+
+#### GET `/api/user/info`
+Gets the authenticated user's profile information.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
+- Response:
+    ```json
+    {
+        "id": 1,
+        "name": "Test Exemple",
+        "email": "user@example.com",
+    }
+    ```
+
+#### PUT `/api/user/update`
+Updates the authenticated user's profile information.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
+- Request Body:
+    ```json
+    {
+        "name": "Updated Name",
+        "email": "updated_email@example.com"
+    }
+    ```
+- Response:
+    ```json
+    {
+        "id": 1,
+        "name": "Updated Name",
+        "email": "updated_email@example.com",
+    }
+    ```
+
+
 ## <span id="scripts">Scripts</span>
 
 - `npm start`: Starts the development server with Nodemon.
@@ -215,6 +259,7 @@ backend/
 ├── .env
 ├── .gitignore
 ├── package.json
+├── package-lock.json
 ├── prisma/
 │   └── schema.prisma
 ├── README-ptbr.md

@@ -35,6 +35,8 @@ Este é o back-end do aplicativo Tasty🥐Pick, desenvolvido em Node.js com Type
     DATABASE_URL="postgresql://user:password@localhost:5432/database_name"
     API_KEY=sua_api_key
     SECRET_KEY="sua_chave_criptografia"
+    EMAIL_USER="email@mail.com"
+    EMAIL_PASS="sua_senha"
     ```
 
 4. Configure o Prisma:
@@ -155,6 +157,8 @@ Obtém o resumo de uma receita específica.
 
 #### GET `/api/recipe/favourite`
 Obtém todas as receitas favoritas do usuário.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
 - Response:
     ```json
     {
@@ -170,6 +174,8 @@ Obtém todas as receitas favoritas do usuário.
 
 #### POST `/api/recipe/favourite`
 Adiciona uma receita aos favoritos do usuário.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
 - Request Body:
     ```json
     {
@@ -188,6 +194,8 @@ Adiciona uma receita aos favoritos do usuário.
 
 #### DELETE `/api/recipe/favourite`
 Remove uma receita dos favoritos do usuário.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
 - Request Body:
     ```json
     {
@@ -199,6 +207,41 @@ Remove uma receita dos favoritos do usuário.
     ```json
     {
         "message": "Favourite recipe removed successfully"
+    }
+    ```
+
+### Perfil do Usuário
+
+#### GET `/api/user/info`
+Obtém as informações do perfil do usuário autenticado.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
+- Response:
+    ```json
+    {
+        "id": 1,
+        "name": "Test Exemple",
+        "email": "user@example.com",
+    }
+    ```
+
+#### PUT `/api/user/update`
+Atualiza as informações do perfil do usuário autenticado.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
+- Request Body:
+    ```json
+    {
+        "name": "Updated Name",
+        "email": "updated_email@example.com"
+    }
+    ```
+- Response:
+    ```json
+    {
+        "id": 1,
+        "name": "Updated Name",
+        "email": "updated_email@example.com",
     }
     ```
 
@@ -215,6 +258,7 @@ backend/
 ├── .env
 ├── .gitignore
 ├── package.json
+├── package-lock.json
 ├── prisma/
 │   └── schema.prisma
 ├── README-ptbr.md

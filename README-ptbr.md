@@ -64,6 +64,8 @@ O aplicativo possui certos pré-requisitos para se dar seu inicio, dentre eles s
         DATABASE_URL="postgresql://user:password@localhost:5432/database_name"
         API_KEY=sua_api_key
         SECRET_KEY="sua_chave_criptografia"
+        EMAIL_USER="email@mail.com"
+        EMAIL_PASS="sua_senha"
     ```
 6. Crie o Banco de dados em seu ambiente escolhido
     * Exemplo:

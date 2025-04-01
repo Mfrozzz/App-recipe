@@ -62,6 +62,8 @@ The app has some prerequisites for getting started, including:
         DATABASE_URL="postgresql://user:password@localhost:5432/database_name"
         API_KEY=your_api_key
         SECRET_KEY="your_secret_key"
+        EMAIL_USER="email@mail.com"
+        EMAIL_PASS="password"
     ```
 6. Create the database in your chosen environment
     * Example:

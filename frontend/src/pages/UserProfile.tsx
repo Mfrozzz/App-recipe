@@ -19,7 +19,7 @@ function UserProfile() {
     const [selectedTab, setSelectedTab] = useState<Tabs>("view");
     const [isLogged, setIsLogged] = useState<boolean>(false);
     const navigate = useNavigate();
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormData>();
 
     useEffect(() => {
         const token = localStorage.getItem("token");
@@ -31,11 +31,13 @@ function UserProfile() {
         GetUserInfoService(token).then((data) => {
             setUser(data);
             setIsLogged(true);
+            setValue("name", data.name);
+            setValue("email", data.email);
         }).catch((err) => {
             console.log(err);
             setIsLogged(false);
         });
-    }, []);
+    }, [navigate, setValue]);
 
     const onSubmit = async (data: FormData) => {
 
