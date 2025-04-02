@@ -1,7 +1,7 @@
 import Joi from "joi";
 
 export const signUpSchema = Joi.object({
-    username: Joi.string().min(3).max(40).required().messages({
+    name: Joi.string().min(3).max(40).required().messages({
         'string.empty': 'Name is required',
         'string.min': 'Name must be at least 3 characters long',
         'string.max': 'Name must be at most 40 characters long',
