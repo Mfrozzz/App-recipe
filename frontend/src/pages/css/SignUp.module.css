@@ -1,6 +1,5 @@
 .bodySignUp {
     font-family: 'Arial', sans-serif;
-    background-color: #ebebeb;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,7 +12,7 @@
     background-color: #ffffff;
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 8px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
     text-align: center;

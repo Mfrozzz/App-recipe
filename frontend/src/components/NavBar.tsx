@@ -14,7 +14,7 @@ interface Props{
 function NavBar({isLogged, userName}: Props) {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const navigate = useNavigate();
-    // const { theme, toggleTheme } = useTheme();
+    const { theme, toggleTheme } = useTheme();
 
     const logout = () => {
         localStorage.removeItem("token");
@@ -35,9 +35,11 @@ function NavBar({isLogged, userName}: Props) {
                     </Link>
                 </div>
                 <div className={styles.rightNav}>
-                    {/* <button onClick={toggleTheme} className={styles.themeSwitch}>
-                        {theme === "light" ? <FaMoon /> : <FaSun />} 
-                    </button> */}
+                    <div className="toggleDiv">
+                        <button onClick={toggleTheme} className={styles.themeSwitch}>
+                            {theme === "light" ? <FaMoon /> : <FaSun />} 
+                        </button>
+                    </div>
                     {!isLogged ? (
                             <>
                                 <span className={styles.btnsRight}><FaSignInAlt /> <Link to="/signin">Sign in</Link></span>

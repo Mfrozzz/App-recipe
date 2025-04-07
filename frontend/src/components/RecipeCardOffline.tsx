@@ -10,7 +10,7 @@ function RecipeCardOffline({ recipe, onClick }: Props) {
     return (
         <div className={styles.recipeCard} onClick={onClick}>
             <img src={recipe.image} />
-            <div className={styles.recipeCardTitle}>
+            <div className={styles.recipeCardTitle + "recipeCardTitle"}>
                 <h3>{recipe.title}</h3>
             </div>
         </div>
