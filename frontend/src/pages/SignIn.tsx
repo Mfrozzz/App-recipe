@@ -4,6 +4,7 @@ import styles from "../pages/css/SignIn.module.css";
 import NavBar from "../components/NavBar";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 interface FormData {
     email: string;
@@ -20,10 +21,10 @@ function SignIn() {
         try {
             userToken = await SignInService(data);
             localStorage.setItem("token", userToken.token);
-            alert('Login successful');
+            toast.success('Signin successful!', { position: "bottom-right", autoClose: 3000 });
             navigate('/recipes');
         } catch (error) {
-            alert(`Login failed: ${error}`);
+            toast.error(`Signin failed: ${error}`, { position: "bottom-right", autoClose: 3000 });
         }
     };
 

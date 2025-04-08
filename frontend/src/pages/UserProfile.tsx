@@ -6,6 +6,7 @@ import NavBar from '../components/NavBar';
 import { useNavigate } from 'react-router-dom';
 import User from '../model/User';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 type Tabs = "view" | "update";
 
@@ -48,11 +49,11 @@ function UserProfile() {
 
         try {
             await UpdateUserInfoService(token, data);
-            alert("User information updated successfully");
+            toast.success("User information updated successfully", { position: "bottom-right", autoClose: 3000 });
             window.location.reload();
         } catch (error) {
             console.log(error);
-            alert("Failed to update user information");
+            toast.error("Failed to update user information", { position: "top-right", autoClose: 3000 });
         }
     }
 

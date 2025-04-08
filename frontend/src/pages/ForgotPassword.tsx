@@ -4,6 +4,7 @@ import styles from "./css/ForgotPassword.module.css";
 import NavBar from "../components/NavBar";
 import { RequestPasswordResetService } from "../service/RequestPasswordService";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 interface FormData {
     email: string;
@@ -16,10 +17,10 @@ function ForgotPassword() {
     const onSubmit = async (data: FormData) => {
         try {
             await RequestPasswordResetService(data);
-            alert(`Password reset email sent to: ${data.email}`);
+            toast.success(`Password reset email sent to: ${data.email}`, { position: "bottom-right", autoClose: 3000 });
             navigate('/signin');
         } catch (error) {
-            alert(`Password reset failed: ${error}`);
+            toast.error(`Password reset failed: ${error}`, { position: "bottom-right", autoClose: 3000 });
         }
     };
 

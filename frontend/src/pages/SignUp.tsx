@@ -4,6 +4,7 @@ import styles from "../pages/css/SignUp.module.css";
 import NavBar from "../components/NavBar";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 interface FormData {
     email: string;
@@ -19,10 +20,10 @@ function SignUp() {
     const onSubmit = async (data: FormData) => {
         try {
             await SignupService(data);
-            alert('Signup successful');
+            toast.success('Signup successful!', { position: "bottom-right", autoClose: 3000 });
             navigate('/signin');
         } catch (error) {
-            alert(`Signup failed: ${error}`);
+            toast.error(`Signup failed: ${error}`, { position: "bottom-right", autoClose: 3000 });
         }
     };
 

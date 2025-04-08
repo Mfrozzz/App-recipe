@@ -4,6 +4,7 @@ import { ResetPasswordService } from "../service/ResetPasswordService";
 import styles from "./css/ForgotPassword.module.css";
 import NavBar from "../components/NavBar";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 interface FormData {
     newPassword: string;
@@ -17,21 +18,22 @@ function ResetPassword() {
 
     const onSubmit = async (data: FormData) => {
         if (!token) {
-            alert("Invalid token");
+            toast.error("Invalid token", { position: "bottom-right", autoClose: 3000 });
             return;
         }
 
         if (data.newPassword !== data.confirmPassword) {
-            alert("Passwords do not match");
+            toast.error("Passwords do not match", { position: "bottom-right", autoClose: 3000 });
             return;
         }
 
         try {
             await ResetPasswordService({ token, newPassword: data.newPassword });
-            alert("Password reset successfully");
+            toast.success("Password reset successfully", { position: "bottom-right", autoClose: 3000 });
             navigate("/signin");
         } catch (error) {
             alert("Failed to reset password");
+            toast.error(`Failed to reset password: ${error}`, { position: "bottom-right", autoClose: 3000 });
         }
     }
 

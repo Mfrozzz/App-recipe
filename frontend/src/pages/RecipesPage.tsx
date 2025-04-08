@@ -15,6 +15,7 @@ import EmptyRecipeTab from '../components/EmptyRecipeTab';
 import User from '../model/User';
 import { GetUserInfoService } from '../service/GetUserInfoService';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 type Tabs = "search" | "favourites";
 
@@ -88,6 +89,7 @@ function RecipesPage() {
         try {
             await AddFavouriteRecipeService(recipe, user);
             setFavouriteRecipes([...favouriteRecipes, recipe]);
+            toast.success('Recipe added to favourites!', { position: "bottom-right", autoClose: 3000 });
         } catch (error) {
             console.log(error);
         }
@@ -100,6 +102,7 @@ function RecipesPage() {
                 (favoriteRecipe) => recipe.id !== favoriteRecipe.id
             );
             setFavouriteRecipes(updatedRecipes);
+            toast.error("Recipe removed from favourites!", { position: "bottom-right", autoClose: 3000 });
         } catch (error) {
             console.log(error);
         }
@@ -118,7 +121,7 @@ function RecipesPage() {
                     <h1 className={selectedTab === 'favourites' ? styles.tabActive : ''} onClick={() => setSelectedTab("favourites")}>Favourites 😍</h1>
                 </div>
                 {selectedTab === "search" && (<>
-                    <form onSubmit={(event) => handleSearchSubmit(event)}>
+                    <form className={styles.formButtonRecipePage} onSubmit={(event) => handleSearchSubmit(event)}>
                         <input
                             type="text"
                             required
