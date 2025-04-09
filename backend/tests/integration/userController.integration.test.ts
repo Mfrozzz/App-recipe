@@ -23,7 +23,7 @@ describe('POST /api/recipe/signup', () => {
                 email: 'johndoe@example.com',
                 password: 'password123',
             });
-
+    
         expect(response.status).toBe(201);
         expect(response.body).toHaveProperty('id');
         expect(response.body).toHaveProperty('name', 'John Doe');

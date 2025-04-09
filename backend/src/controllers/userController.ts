@@ -18,20 +18,29 @@ const generateToken = (userId: number) => {
 export const signupHandler = async (req: Request, res: Response) => {
     const { email, password, name } = req.body;
 
-    const hashedPassword = await bcrypt.hash(password, 8);
-
     try {
+        const existingUser = await prismaClient.user.findUnique({
+            where: { email },
+        });
+
+        if (existingUser) {
+            return res.status(400).json({ error: 'User already exists' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 8);
+
         const user = await prismaClient.user.create({
             data: {
                 email,
                 password: hashedPassword,
-                name: name
+                name,
             },
         });
 
         return res.status(201).json(user) as any;
     } catch (error) {
-        return res.status(400).json({ error: 'User already exists' });
+        console.error(error);
+        return res.status(500).json({ error: 'Something went wrong' });
     }
 };
 
