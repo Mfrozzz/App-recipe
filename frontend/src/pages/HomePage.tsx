@@ -16,10 +16,12 @@ function HomePage() {
     const [selectedRecipe, setSelectedRecipe] = useState<Recipe | undefined>(undefined);
     const [selectedTab, setSelectedTab] = useState<Tabs>("burger");
     const pageNumber = useRef(1);
+    const [loading, setLoading] = useState<boolean>(false);
     const [searchPerformed, setSearchPerformed] = useState<boolean>(false);
 
     useEffect(() => {
         const originalSearch = async () => {
+            setLoading(true);
 
             try {
                 const recipes = await SearchRecipesService(searchTerm, 1);
@@ -28,13 +30,15 @@ function HomePage() {
                 pageNumber.current = 1;
             } catch (error) {
                 console.log(error);
+            } finally {
+                setLoading(false);
             }
         }
         originalSearch();
     }, []);
 
     const handleSearchSubmit = async (searchTab: string) => {
-    
+        setLoading(true);
             try {
                 const recipes = await SearchRecipesService(searchTab, 1);
                 setRecipes(recipes.results);
@@ -42,6 +46,8 @@ function HomePage() {
                 pageNumber.current = 1;
             } catch (error) {
                 console.log(error);
+            } finally {
+                setLoading(false);
             }
         }
 
@@ -88,21 +94,28 @@ function HomePage() {
                     }}>Pasta 🍝</h1>
                 </div>
                 <div>
-                    <div className={styles.recipeGrid}>
-                        {searchPerformed && recipes.length === 0 ? (
-                            <EmptyRecipeTab />
-                        ) : (
-                            recipes.map((recipe: Recipe) => {
-                                return (
-                                    <RecipeCardOffline
-                                        key={recipe.id}
-                                        recipe={recipe}
-                                        onClick={() => setSelectedRecipe(recipe)}
-                                    />
-                                );
-                            })
-                        )}
-                    </div>
+                    {loading ? (
+                        <div className={styles.loadingContainer}>
+                            <div className={styles.spinner}></div>
+                            <p>Loading ...</p>
+                        </div>
+                    ):(
+                        <div className={styles.recipeGrid}>
+                            {searchPerformed && recipes.length === 0 ? (
+                                <EmptyRecipeTab />
+                            ) : (
+                                recipes.map((recipe: Recipe) => {
+                                    return (
+                                        <RecipeCardOffline
+                                            key={recipe.id}
+                                            recipe={recipe}
+                                            onClick={() => setSelectedRecipe(recipe)}
+                                        />
+                                    );
+                                })
+                            )}
+                        </div>
+                    )}
                     <button className={styles.viewMoreButton} onClick={handleViewMoreClick}>
                         View More
                     </button>

@@ -29,6 +29,7 @@ function RecipesPage() {
     const [searchPerformed, setSearchPerformed] = useState<boolean>(false);
     const [user, setUser] = useState<any>(null);
     const [isLogged, setIsLogged] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -54,10 +55,13 @@ function RecipesPage() {
 
     const fetchFavouriteRecipes = async () => {
         try {
+            setLoading(true);
             const favouriteRecipes = await GetFavouriteRecipesService(user.id);
             setFavouriteRecipes(favouriteRecipes.results);
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -65,12 +69,15 @@ function RecipesPage() {
         event.preventDefault();
 
         try {
+            setLoading(true);
             const recipes = await SearchRecipesService(searchTerm, 1);
             setRecipes(recipes.results);
             setSearchPerformed(true);
             pageNumber.current = 1;
         } catch (error) {
             console.log(error);
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -132,28 +139,35 @@ function RecipesPage() {
                         ></input>
                         <button type="submit"><AiOutlineSearch className={styles.searchBtn} size={40} /></button>
                     </form>
-                    <div className={styles.recipeGrid}>
-                        {/* Add a component when the search returns 0 results */}
-                        {searchPerformed && recipes.length === 0 ? (
-                            <EmptyRecipeTab />
-                        ) : (
-                            recipes.map((recipe: Recipe) => {
-                                const isFavorite = favouriteRecipes.some(
-                                    (favoriteRecipe) => recipe.id === favoriteRecipe.id
-                                );
-                                return (
-                                    <RecipeCard
-                                        key={recipe.id}
-                                        recipe={recipe}
-                                        user={user}
-                                        onClick={() => setSelectedRecipe(recipe)}
-                                        onFavouriteButtonClick={isFavorite ? removeFavouriteRecipe : addFavoriteRecipe}
-                                        isFavorite={isFavorite}
-                                    />
-                                );
-                            })
-                        )}
-                    </div>
+                    {loading ? (
+                        <div className={styles.loadingContainer}>
+                            <div className={styles.spinner}></div>
+                            <p>Loading ...</p>
+                        </div>
+                    ):(
+                        <div className={styles.recipeGrid}>
+                            {/* Add a component when the search returns 0 results */}
+                            {searchPerformed && recipes.length === 0 ? (
+                                <EmptyRecipeTab />
+                            ) : (
+                                recipes.map((recipe: Recipe) => {
+                                    const isFavorite = favouriteRecipes.some(
+                                        (favoriteRecipe) => recipe.id === favoriteRecipe.id
+                                    );
+                                    return (
+                                        <RecipeCard
+                                            key={recipe.id}
+                                            recipe={recipe}
+                                            user={user}
+                                            onClick={() => setSelectedRecipe(recipe)}
+                                            onFavouriteButtonClick={isFavorite ? removeFavouriteRecipe : addFavoriteRecipe}
+                                            isFavorite={isFavorite}
+                                        />
+                                    );
+                                })
+                            )}
+                        </div>
+                    )}
                     <button className={styles.viewMoreButton} onClick={handleViewMoreClick}>
                         View More
                     </button>
