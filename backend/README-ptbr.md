@@ -250,6 +250,8 @@ Atualiza as informações do perfil do usuário autenticado.
 - `npm start`: Inicia o servidor de desenvolvimento com Nodemon.
 - `npx prisma generate`: Gera o cliente Prisma.
 - `npx prisma db push`: Aplica as migrações do Prisma ao banco de dados.
+- `npm run test:integration`: Realiza os testes de integração com o Jest.
+- `npm run test:unit`: Realiza os testes de unidade com o Jest.
 
 <span id="estrutura-de-pastas">Estrutura de Pastas</span>
 

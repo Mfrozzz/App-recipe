@@ -251,6 +251,8 @@ Updates the authenticated user's profile information.
 - `npm start`: Starts the development server with Nodemon.
 - `npx prisma generate`: Generates the Prisma client.
 - `npx prisma db push`: Applies the Prisma migrations to the database.
+- `npm run test:integration`: Run integration tests with Jest.
+- `npm run test:unit`: Run unit tests with Jest.
 
 ## <span id="folder-structure">Folder Structure</span>
 
