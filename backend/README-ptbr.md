@@ -263,6 +263,8 @@ backend/
 ├── package-lock.json
 ├── prisma/
 │   └── schema.prisma
+├── jest.integration.config.js
+├── jest.unit.config.js
 ├── README-ptbr.md
 ├── README.md
 ├── src/
@@ -270,11 +272,22 @@ backend/
 │   │   ├── recipeController.ts
 │   │   └── userController.ts
 │   ├── index.ts
+│   ├── middlewares/
+│   │   ├── rateLimiter.ts
+│   │   └── validateRequest.ts
 │   ├── routes/
 │   │   └── routes.ts
-│   └── service/
-│       ├── GetFavouriteRecipesByIdsService.ts
-│       ├── GetRecipeSummaryService.ts
-│       ├── SearchRecipeService.ts
+│   ├── service/
+│   |    ├── GetFavouriteRecipesByIdsService.ts
+│   |    ├── GetRecipeSummaryService.ts
+│   |    └── SearchRecipeService.ts
+|   ├── validations/
+|   |    ├── recipeValidations.ts
+|   |    └── userValidation.ts
 ├── tsconfig.json
+└── tests/
+    ├── integration/
+    |    ├── recipeController.integration.ts
+    |    └── userController.integration.ts
+    └── unit/
 ```

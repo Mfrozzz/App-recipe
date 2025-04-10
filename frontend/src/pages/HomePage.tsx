@@ -71,7 +71,7 @@ function HomePage() {
             </div>
             <div>
                 <div className={styles.tabs}>
-                    <h1>Examples: </h1>
+                    <h1 className={styles.exampleLabel}>Examples: </h1>
                     <h1 className={selectedTab === 'burger' ? styles.tabActive : ''} onClick={() =>{
                         setSelectedTab("burger");
                         setSearchTerm("burger");

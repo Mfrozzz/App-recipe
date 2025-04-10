@@ -55,6 +55,12 @@ button {
 	background-color: #fff;
 	border: none;
 	cursor: pointer;
+	transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+    background-color: #007fff;
 }
 
 .recipeGrid {
@@ -259,6 +265,15 @@ nav {
 
 .tabs h1:hover {
 	transform: scale(1.1);
+}
+
+h1.exampleLabel {
+	cursor: default;
+	transition: none;
+}
+
+h1.exampleLabel:hover {
+	transform: none;
 }
 
 .recipeCardTitle {

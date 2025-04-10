@@ -11,6 +11,7 @@ This app is built with a separation of frontend and backend, where the frontend 
 * [Backend](#backend)  
 * [Frontend](#frontend)  
 * [More Information](#more-info)  
+* [Folder Structure](#folder-structure)
 * [PT-BR version](https://github.com/Mfrozzz/App-recipe/blob/master/README-ptbr.md)
 
 <br>  
@@ -94,3 +95,16 @@ For more information on the Frontend [Click Here](https://github.com/Mfrozzz/App
 ## <span id="more-info">More Information</span>
 
 > Based on the project from [FreeCodeCamp🔥](https://www.freecodecamp.org/news/full-stack-project-create-a-recipe-app-using-react-node-js/)
+
+## <span id="folder-structure">Folder Structure</span>
+
+```
+App-recipe/
+├── backend/
+|    └── Back-end Folder Structure
+├── frontend/
+|    └── Front-end Folder Structure
+├── .gitignore
+├── README-ptbr.md
+└── README.md
+```

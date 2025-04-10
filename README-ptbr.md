@@ -12,6 +12,7 @@ Esse app é construido a partir da divisão de frontend e backend, sendo o front
 * [Backend](#backend);
 * [Frontend](#frontend);
 * [Mais Informações](#more-info);
+* [Estrutura de Pastas](#folder-structure)
 * [Versão EN-US](https://github.com/Mfrozzz/App-recipe/blob/master/README.md)
 
 <br>
@@ -96,3 +97,16 @@ Para mais informações do Frontend [Clique Aqui](https://github.com/Mfrozzz/App
 ## <span id="more-info">Mais informações</span>
 
 > Baseado no projeto do [FreeCodeCamp🔥](https://www.freecodecamp.org/news/full-stack-project-create-a-recipe-app-using-react-node-js/)
+
+## <span id="folder-structure">Estrutura de Pastas</span>
+
+```
+App-recipe/
+├── backend/
+|    └── Estrutura de Pastas do Back-end
+├── frontend/
+|    └── Estrutura de Pastas do Front-end
+├── .gitignore
+├── README-ptbr.md
+└── README.md
+```
