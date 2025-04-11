@@ -263,8 +263,7 @@ backend/
 ├── package-lock.json
 ├── prisma/
 │   └── schema.prisma
-├── jest.integration.config.js
-├── jest.unit.config.js
+├── jest.config.js
 ├── README-ptbr.md
 ├── README.md
 ├── src/
@@ -286,8 +285,6 @@ backend/
 |   |    └── userValidation.ts
 ├── tsconfig.json
 └── tests/
-    ├── integration/
-    |    ├── recipeController.integration.ts
-    |    └── userController.integration.ts
-    └── unit/
+     ├── recipeController.integration.ts
+     └── userController.integration.ts
 ```

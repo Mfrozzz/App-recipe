@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../../src/index';
+import app from '../src/index';
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';

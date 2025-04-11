@@ -4,8 +4,6 @@
   "description": "",
   "main": "./src/index.ts",
   "scripts": {
-    "test:unit": "jest --config jest.unit.config.js",
-    "test:integration": "jest --config jest.integration.config.js",
     "test": "jest",
     "start": "npx nodemon ./src/index.ts"
   },

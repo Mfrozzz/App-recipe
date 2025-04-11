@@ -105,6 +105,8 @@ App-recipe/
 |    └── Back-end Folder Structure
 ├── frontend/
 |    └── Front-end Folder Structure
+├── screenshots/
+|    └── Screenshots Folder
 ├── .gitignore
 ├── README-ptbr.md
 └── README.md

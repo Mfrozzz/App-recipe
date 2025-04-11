@@ -107,6 +107,8 @@ App-recipe/
 |    └── Estrutura de Pastas do Back-end
 ├── frontend/
 |    └── Estrutura de Pastas do Front-end
+├── screenshots/
+|    └── Pasta de capturas de tela
 ├── .gitignore
 ├── README-ptbr.md
 └── README.md
