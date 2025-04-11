@@ -12,8 +12,9 @@ Esse app é construido a partir da divisão de frontend e backend, sendo o front
 * [Backend](#backend);
 * [Frontend](#frontend);
 * [Mais Informações](#more-info);
-* [Estrutura de Pastas](#folder-structure)
-* [Versão EN-US](https://github.com/Mfrozzz/App-recipe/blob/master/README.md)
+* [Estrutura de Pastas](#folder-structure);
+* [Capturas de Tela](#screenshots);
+* [Versão EN-US](https://github.com/Mfrozzz/App-recipe/blob/master/README.md);
 
 <br>
 <br>
@@ -110,3 +111,71 @@ App-recipe/
 ├── README-ptbr.md
 └── README.md
 ```
+
+## <span id="screenshots">Capturas de Tela</span>
+
+Aqui estão algumas capturas de tela do sistema para ilustrar suas funcionalidades:
+
+1. **Página Inicial**  
+   A página inicial exibe categorias populares de receitas e permite navegar facilmente.  
+   ![HomePage](./screenshots/HomePage.png)
+
+2. **Página de Receitas**  
+   Permite buscar receitas, visualizar os resultados e gerenciar receitas favoritas.  
+   ![RecipesPage](./screenshots/RecipesPage.png)
+
+3. **Modal de Receita**  
+   Exibe os detalhes de uma receita específica, como ingredientes e instruções.  
+   ![ModalCard](./screenshots/ModalCard.png)
+
+4. **Página de Login**  
+   Permite que os usuários façam autenticação para acessar suas receitas favoritas.  
+   ![LoginPage](./screenshots/LoginPage.png)
+
+5. **Página de Registro**  
+   Permite que novos usuários criem uma conta.  
+   ![SignUpPage](./screenshots/SignUpPage.png)
+
+6. **Página de Esqueci Minha Senha**  
+   Permite que os usuários solicitem a redefinição de senha.  
+   ![ForgotPasswordPage](./screenshots/ForgotPasswordPage.png)
+
+7. **Página de Redefinição de Senha**  
+   Permite que os usuários redefinam suas senhas usando um token.  
+   ![ResetPasswordPage](./screenshots/ResetPasswordPage.png)
+
+8. **Seção de Favoritos**  
+   Exibe as receitas favoritas do usuário.  
+   ![FavouriteSection](./screenshots/FavouriteSection.png)
+
+9. **Página de Perfil do Usuário**  
+   - Visualização das informações do usuário.
+   ![UserProfilePage](./screenshots/UserProfilePage.png)
+   - Atualização das informações do usuário.
+   ![UpdateUserInfo](./screenshots/UpdateUserPage.png)
+
+10. **Dropdown do Usuário**  
+    Menu suspenso para acessar configurações e logout.  
+    ![UserDropdown](./screenshots/UserDropdown.png)
+
+11. **Componentes de Feedback**  
+    - **Toast de Sucesso**: Exibe mensagens de sucesso.  
+      ![SuccessToast](./screenshots/SuccessToast.png)  
+    - **Toast de Erro**: Exibe mensagens de erro.  
+      ![ErrorToast](./screenshots/ErrorToast.png)
+
+12. **Modo Escuro**  
+    Interface do sistema no modo escuro.  
+    ![DarkMode](./screenshots/DarkMode.png)
+
+13. **Componente de Carregamento**  
+    Exibe um spinner enquanto os dados estão sendo carregados.  
+    ![LoadingComponent](./screenshots/LoadingComponent.png)
+
+14. **Lista de Cartões de Receita**  
+    Exibe uma lista de receitas em formato de cartões.  
+    ![RecipeCards](./screenshots/RecipeCards.png)
+
+15. **Favoritos Vazios**  
+    Exibe uma mensagem quando o usuário não possui receitas favoritas.  
+    ![EmptyFavourite](./screenshots/EmptyFavourite.png)

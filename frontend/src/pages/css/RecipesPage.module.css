@@ -414,6 +414,7 @@ h1.exampleLabel:hover {
 
 .themeSwitch:hover {
 	color: var(--primary-color);
+	background-color: transparent;
 }
 
 .loadingContainer{

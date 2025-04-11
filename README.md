@@ -6,13 +6,14 @@ This app is built with a separation of frontend and backend, where the frontend 
 <br>  
 ## Table of Contents 📄  
 
-* [Requirements](#requirements)  
-* [Setting up the environment](#setting-up)  
-* [Backend](#backend)  
-* [Frontend](#frontend)  
-* [More Information](#more-info)  
-* [Folder Structure](#folder-structure)
-* [PT-BR version](https://github.com/Mfrozzz/App-recipe/blob/master/README-ptbr.md)
+* [Requirements](#requirements);
+* [Setting up the environment](#setting-up);
+* [Backend](#backend);
+* [Frontend](#frontend);
+* [More Information](#more-info);
+* [Folder Structure](#folder-structure);
+* [Screenshots](#screenshots);
+* [PT-BR version](https://github.com/Mfrozzz/App-recipe/blob/master/README-ptbr.md);
 
 <br>  
 
@@ -108,3 +109,71 @@ App-recipe/
 ├── README-ptbr.md
 └── README.md
 ```
+
+## <span id="screenshots">Screenshots</span>
+
+Here are some screenshots of the system to illustrate its features:
+
+1. **Home Page**  
+   The home page displays popular recipe categories and allows easy navigation.  
+   ![HomePage](./screenshots/HomePage.png)
+
+2. **Recipes Page**  
+   Allows users to search for recipes, view results, and manage favorite recipes.  
+   ![RecipesPage](./screenshots/RecipesPage.png)
+
+3. **Recipe Modal**  
+   Displays the details of a specific recipe, such as ingredients and instructions.  
+   ![ModalCard](./screenshots/ModalCard.png)
+
+4. **Login Page**  
+   Allows users to authenticate and access their favorite recipes.  
+   ![LoginPage](./screenshots/LoginPage.png)
+
+5. **Sign-Up Page**  
+   Allows new users to create an account.  
+   ![SignUpPage](./screenshots/SignUpPage.png)
+
+6. **Forgot Password Page**  
+   Allows users to request a password reset.  
+   ![ForgotPasswordPage](./screenshots/ForgotPasswordPage.png)
+
+7. **Reset Password Page**  
+   Allows users to reset their passwords using a token.  
+   ![ResetPasswordPage](./screenshots/ResetPasswordPage.png)
+
+8. **Favorites Section**  
+   Displays the user's favorite recipes.  
+   ![FavouriteSection](./screenshots/FavouriteSection.png)
+
+9. **User Profile Page**  
+   - View user information.  
+   ![UserProfilePage](./screenshots/UserProfilePage.png)  
+   - Update user information.  
+   ![UpdateUserInfo](./screenshots/UpdateUserPage.png)
+
+10. **User Dropdown**  
+    Dropdown menu to access settings and logout.  
+    ![UserDropdown](./screenshots/UserDropdown.png)
+
+11. **Feedback Components**  
+    - **Success Toast**: Displays success messages.  
+      ![SuccessToast](./screenshots/SuccessToast.png)  
+    - **Error Toast**: Displays error messages.  
+      ![ErrorToast](./screenshots/ErrorToast.png)
+
+12. **Dark Mode**  
+    The system interface in dark mode.  
+    ![DarkMode](./screenshots/DarkMode.png)
+
+13. **Loading Component**  
+    Displays a spinner while data is being loaded.  
+    ![LoadingComponent](./screenshots/LoadingComponent.png)
+
+14. **Recipe Cards List**  
+    Displays a list of recipes in card format.  
+    ![RecipeCards](./screenshots/RecipeCards.png)
+
+15. **Empty Favorites**  
+    Displays a message when the user has no favorite recipes.  
+    ![EmptyFavourite](./screenshots/EmptyFavourite.png)
