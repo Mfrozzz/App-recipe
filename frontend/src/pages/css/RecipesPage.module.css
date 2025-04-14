@@ -450,3 +450,24 @@ h1.exampleLabel:hover {
         transform: rotate(360deg);
     }
 }
+
+.exportBtn {
+    display: inline-block;;
+    padding: 2% 3%;
+    background-color: #808080;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.exportBtn:hover {
+    background-color: #007bff;
+    transform: scale(1.05);
+}
+
+.exportBtn:active {
+    transform: scale(0.95);
+}
