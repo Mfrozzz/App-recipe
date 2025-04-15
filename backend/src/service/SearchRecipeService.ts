@@ -15,7 +15,7 @@ export const searchRecipes = async (searchTerm: string, page: number) => {
     const queryParams = {
         apiKey,
         query: searchTerm,
-        number: "9",
+        number: "8",
         offset: (page * 10).toString()
     }
 

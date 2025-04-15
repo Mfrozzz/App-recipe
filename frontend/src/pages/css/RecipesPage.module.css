@@ -118,6 +118,10 @@ button:hover {
 	color: #000;
 }
 
+.emptyFavourite {
+	margin-bottom: 2.5%;
+}
+
 .viewMoreButton {
 	font-size: 1.5em;
 	padding: 1em;

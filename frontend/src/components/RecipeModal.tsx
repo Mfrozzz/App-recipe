@@ -13,10 +13,15 @@ interface Props {
 function RecipeModal({ recipeId, onClose }: Props) {
 
     const [recipeSummary, setRecipeSummary] = useState<RecipeSummary>();
+    const [isLogged, setIsLogged] = useState(false);
 
     useEffect(() => {
         const fetchRecipeSummary = async () => {
             try {
+                const token = localStorage.getItem("token");
+                if(token){
+                    setIsLogged(true);
+                }
                 const summaryRecipe = await getRecipeSummaryService(recipeId);
                 setRecipeSummary(summaryRecipe);
             } catch (error) {
@@ -80,9 +85,11 @@ function RecipeModal({ recipeId, onClose }: Props) {
                             <span className={styles.closeBtn} onClick={onClose}><AiOutlineClose /></span>
                         </div>
                         <p dangerouslySetInnerHTML={{ __html: recipeSummary?.summary }}></p>
-                        <button onClick={exportToPdf} className={styles.exportBtn} title="Export to PDF">
-                            <AiOutlineFilePdf />
-                        </button>
+                        {isLogged && (
+                            <button onClick={exportToPdf} className={styles.exportBtn} title="Export to PDF">
+                                <AiOutlineFilePdf />
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>
