@@ -20,6 +20,7 @@ model User {
   name            String
   favouriteRecipes FavouriteRecipes[]
   @@map("User")
+  Reviews Reviews[]
 }
 
 model FavouriteRecipes {
@@ -27,4 +28,14 @@ model FavouriteRecipes {
   recipeId Int  
   userId   Int
   user     User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Reviews {
+  id       Int  @id @default(autoincrement())
+  recipeId Int  
+  userId   Int
+  rating   Int
+  comment  String
+  user     User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date     DateTime @default(now())
 }
