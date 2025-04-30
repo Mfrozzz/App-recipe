@@ -18,7 +18,7 @@ export const createReviewHandler = async (req: Request, res: Response) => {
     try {
         const review = await prismaClient.reviews.create({
             data: {
-                recipeId: recipeId,
+                recipeId: parseInt(recipeId),
                 userId: userId,
                 rating: rating,
                 comment: comment

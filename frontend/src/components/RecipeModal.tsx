@@ -4,6 +4,8 @@ import { getRecipeSummaryService } from "../service/GetRecipeSummaryService"
 import { AiOutlineClose, AiOutlineFilePdf } from "react-icons/ai";
 import  styles from "../pages/css/RecipesPage.module.css";
 import jsPDF from "jspdf";
+import RecipeReviews from "./RecipeReviews";
+import { GetUserInfoService } from "../service/GetUserInfoService";
 
 interface Props {
     recipeId: string;
@@ -14,6 +16,25 @@ function RecipeModal({ recipeId, onClose }: Props) {
 
     const [recipeSummary, setRecipeSummary] = useState<RecipeSummary>();
     const [isLogged, setIsLogged] = useState(false);
+    const [user, setUser] = useState<any>(null);
+
+    useEffect(() => {
+        const fetchUserInfo = async () => {
+            const token = localStorage.getItem("token");
+            if (token) {
+                try {
+                    const data = await GetUserInfoService(token);
+                    setUser(data.id);
+                } catch (err) {
+                    console.error("Error fetching user info:", err);
+                }
+            }
+        };
+
+        if (isLogged) {
+            fetchUserInfo();
+        }
+    }, [isLogged]);
 
     useEffect(() => {
         const fetchRecipeSummary = async () => {
@@ -86,9 +107,12 @@ function RecipeModal({ recipeId, onClose }: Props) {
                         </div>
                         <p dangerouslySetInnerHTML={{ __html: recipeSummary?.summary }}></p>
                         {isLogged && (
-                            <button onClick={exportToPdf} className={styles.exportBtn} title="Export to PDF">
-                                <AiOutlineFilePdf />
-                            </button>
+                            <>
+                                <button onClick={exportToPdf} className={styles.exportBtn} title="Export to PDF">
+                                    <AiOutlineFilePdf />
+                                </button>
+                                <RecipeReviews recipeId={recipeId as any} userId={user} />
+                            </>
                         )}
                     </div>
                 </div>
