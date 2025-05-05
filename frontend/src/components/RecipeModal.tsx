@@ -6,6 +6,7 @@ import  styles from "../pages/css/RecipesPage.module.css";
 import jsPDF from "jspdf";
 import RecipeReviews from "./RecipeReviews";
 import { GetUserInfoService } from "../service/GetUserInfoService";
+import User from "../model/User";
 
 interface Props {
     recipeId: string;
@@ -16,7 +17,7 @@ function RecipeModal({ recipeId, onClose }: Props) {
 
     const [recipeSummary, setRecipeSummary] = useState<RecipeSummary>();
     const [isLogged, setIsLogged] = useState(false);
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<User>();
 
     useEffect(() => {
         const fetchUserInfo = async () => {
@@ -24,7 +25,7 @@ function RecipeModal({ recipeId, onClose }: Props) {
             if (token) {
                 try {
                     const data = await GetUserInfoService(token);
-                    setUser(data.id);
+                    setUser(data);
                 } catch (err) {
                     console.error("Error fetching user info:", err);
                 }
@@ -111,7 +112,7 @@ function RecipeModal({ recipeId, onClose }: Props) {
                                 <button onClick={exportToPdf} className={styles.exportBtn} title="Export to PDF">
                                     <AiOutlineFilePdf />
                                 </button>
-                                <RecipeReviews recipeId={recipeId as any} userId={user} />
+                                <RecipeReviews recipeId={recipeId as any} userId={user?.id as number} />
                             </>
                         )}
                     </div>

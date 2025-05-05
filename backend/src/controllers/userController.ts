@@ -186,3 +186,29 @@ export const updateUserInfoHandler = async (req: Request, res: Response) => {
         return res.status(401).json({ error: 'Invalid token' });
     }
 };
+
+export const getUserByIdHandler = async (req: Request, res: Response) => {
+    const authToken = req.headers.authorization;
+    
+    if (!authToken) {
+        return res.status(401).json({ error: 'No token provided' });
+    }
+    
+    const { userId } = req.params;
+
+    try {
+        const user = await prismaClient.user.findUnique({
+            where: {
+                id: parseInt(userId),
+            },
+        });
+
+        if (!user) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        return res.status(200).json(user) as any;
+    } catch (error) {
+        return res.status(500).json({ error: "Something went wrong" });
+    }
+};
