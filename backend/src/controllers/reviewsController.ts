@@ -40,6 +40,10 @@ export const getReviewsByRecipeHandler = async (req: Request, res: Response) => 
         return res.status(401).json({ error: 'No token provided' });
     }
 
+    if (isNaN(Number(recipeId))) {
+        return res.status(400).json({ error: "Recipe ID must be a number" });
+    }
+
     try {
         const reviews = await prismaClient.reviews.findMany({
             where: {

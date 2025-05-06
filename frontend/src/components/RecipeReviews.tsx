@@ -2,8 +2,6 @@ import { AddReviewService } from "../service/AddReviewService";
 import { GetReviewsByRecipeService } from "../service/GetReviewsByRecipeService";
 import { useEffect, useState } from "react";
 import styles from "../pages/css/RecipesPage.module.css";
-import { GetUserInfoService } from "../service/GetUserInfoService";
-import User from "../model/User";
 import { GetUserByIdService } from "../service/GetUserByIdService";
 
 interface Review {
@@ -73,7 +71,7 @@ function RecipeReviews({ recipeId, userId }: Props) {
             };
             const response = await AddReviewService(newReview);
             setReviews([response, ...reviews]);
-            const updatedResponse = await GetReviewsByRecipeService(recipeId); // Recarrega a média do backend
+            const updatedResponse = await GetReviewsByRecipeService(recipeId);
             setAverageRating(updatedResponse.averageRating);
             setNewComment("");
             setNewRating(0);
