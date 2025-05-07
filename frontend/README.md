@@ -68,6 +68,7 @@ This is the front-end of the Tasty🥐Pick application, developed in React with 
 - **RecipeModal**: Modal to display details of a specific recipe.
 - **EmptyFavouriteTab**: Displayed when the user has no favorite recipes.
 - **EmptyRecipeTab**: Displayed when the recipe search returns no results.
+- **RecipeReviews**: Displays the recipe's comments and ratings.
 
 ## <span id="folder-structure">Folder Structure</span>
 ```
@@ -91,11 +92,13 @@ frontend/
 │ │ ├── NavBar.tsx 
 │ │ ├── RecipeCard.tsx 
 │ │ ├── RecipeCardOffline.tsx 
-│ │ └── RecipeModal.tsx 
+│ │ ├── RecipeModal.tsx 
+| | └── RecipeReviews.tsx
 │ ├── main.tsx 
 │ ├── model/ 
 │ │ ├── Recipe.ts 
 │ │ ├── RecipeSummary.ts 
+| | ├── Review.ts
 │ │ └── User.ts 
 │ ├── pages/ 
 │ │ ├── css/ 
@@ -115,8 +118,11 @@ frontend/
 │ │ └── Routes.tsx 
 │ ├── service/ 
 │ │ ├── AddFavouriteRecipeService.ts 
+| | ├── AddReviewService.ts
 │ │ ├── GetFavouriteRecipesService.ts 
 │ │ ├── GetRecipeSummaryService.ts 
+| | ├── GetReviewsByRecipeService.ts
+| | ├── GetUserByIdService.ts
 │ │ ├── GetUserInfoService.ts 
 │ │ ├── RemoveFavouriteRecipeService.ts 
 │ │ ├── RequestPasswordService.ts 

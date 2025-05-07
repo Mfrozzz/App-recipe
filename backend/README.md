@@ -225,6 +225,19 @@ Gets the authenticated user's profile information.
     }
     ```
 
+#### GET `/api/user/info/:userId`
+Retrieves the user's profile information by their ID.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
+- Response:
+    ```json
+    {
+        "id": 1,
+        "name": "Test Exemple",
+        "email": "user@example.com",
+    }
+    ```
+
 #### PUT `/api/user/update`
 Updates the authenticated user's profile information.
 - Headers:
@@ -245,14 +258,70 @@ Updates the authenticated user's profile information.
     }
     ```
 
+### Reviews 
+
+#### POST `/api/recipe/review`
+Creates a new review for a recipe.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
+- Request Body:
+    ```json
+    {
+        "recipeId": 101,
+        "userId": 1,
+        "rating": 5,
+        "comment": "Amazing recipe!"
+    }
+    ```
+- Response:
+    ```json
+    {
+        "id": 1,
+        "recipeId": 101,
+        "userId": 1,
+        "rating": 5,
+        "comment": "Amazing recipe!",
+        "date": "2025-05-05T12:00:00.000Z"
+    }
+    ```
+
+#### GET `/api/recipe/review/:recipeId`
+Retrieves all reviews for a specific recipe, including the average rating.
+- Path Params:
+    - `recipeId`: Recipe ID.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
+- Response:
+```json
+{
+    "reviews": [
+        {
+            "id": 1,
+            "recipeId": 101,
+            "userId": 1,
+            "rating": 5,
+            "comment": "Amazing recipe!",
+            "date": "2025-05-05T12:00:00.000Z"
+        },
+        {
+            "id": 2,
+            "recipeId": 101,
+            "userId": 2,
+            "rating": 4,
+            "comment": "Pretty good!",
+            "date": "2025-05-06T14:30:00.000Z"
+        }
+    ],
+    "averageRating": 4.5
+}
+```
 
 ## <span id="scripts">Scripts</span>
 
 - `npm start`: Starts the development server with Nodemon.
 - `npx prisma generate`: Generates the Prisma client.
 - `npx prisma db push`: Applies the Prisma migrations to the database.
-- `npm run test:integration`: Run integration tests with Jest.
-- `npm run test:unit`: Run unit tests with Jest.
+- `npm run test`: Run integration tests with Jest.
 
 ## <span id="folder-structure">Folder Structure</span>
 
@@ -267,9 +336,11 @@ backend/
 ├── jest.config.js
 ├── README-ptbr.md
 ├── README.md
+├── tsconfig.json
 ├── src/
 │   ├── controllers/
 │   │   ├── recipeController.ts
+|   |   ├── reviewsController.ts
 │   │   └── userController.ts
 │   ├── index.ts
 │   ├── middlewares/
@@ -283,9 +354,11 @@ backend/
 │   |    └── SearchRecipeService.ts
 |   ├── validations/
 |   |    ├── recipeValidations.ts
+|   |    ├── reviewsValidations.ts
 |   |    └── userValidation.ts
 ├── tsconfig.json
 └── tests/
-     ├── recipeController.integration.ts
-     └── userController.integration.ts
+     ├── recipeController.integration.test.ts
+     ├── reviewsController.integration.test.ts
+     └── userController.integration.test.ts
 ```

@@ -225,6 +225,19 @@ Obtém as informações do perfil do usuário autenticado.
     }
     ```
 
+#### GET `/api/user/info/:userId`
+Obtém as informações do perfil do usuário pelo seu ID.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
+- Response:
+    ```json
+    {
+        "id": 1,
+        "name": "Test Exemple",
+        "email": "user@example.com",
+    }
+    ```
+
 #### PUT `/api/user/update`
 Atualiza as informações do perfil do usuário autenticado.
 - Headers:
@@ -245,13 +258,70 @@ Atualiza as informações do perfil do usuário autenticado.
     }
     ```
 
+### Reviews 
+
+#### POST `/api/recipe/review`
+Cria uma nova review para uma receita.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
+- Request Body:
+    ```json
+    {
+        "recipeId": 101,
+        "userId": 1,
+        "rating": 5,
+        "comment": "Amazing recipe!"
+    }
+    ```
+- Response:
+    ```json
+    {
+        "id": 1,
+        "recipeId": 101,
+        "userId": 1,
+        "rating": 5,
+        "comment": "Amazing recipe!",
+        "date": "2025-05-05T12:00:00.000Z"
+    }
+    ```
+
+#### GET `/api/recipe/review/:recipeId`
+Obtém todas as reviews de uma receita específica, incluindo a média de avaliações.
+- Path Params:
+    - `recipeId`: O ID da receita.
+- Headers:
+    - `Authorization`: Bearer `jwt_token`
+- Response:
+```json
+{
+    "reviews": [
+        {
+            "id": 1,
+            "recipeId": 101,
+            "userId": 1,
+            "rating": 5,
+            "comment": "Amazing recipe!",
+            "date": "2025-05-05T12:00:00.000Z"
+        },
+        {
+            "id": 2,
+            "recipeId": 101,
+            "userId": 2,
+            "rating": 4,
+            "comment": "Pretty good!",
+            "date": "2025-05-06T14:30:00.000Z"
+        }
+    ],
+    "averageRating": 4.5
+}
+```
+
 ## <span id="scripts">Scripts</span>
 
 - `npm start`: Inicia o servidor de desenvolvimento com Nodemon.
 - `npx prisma generate`: Gera o cliente Prisma.
 - `npx prisma db push`: Aplica as migrações do Prisma ao banco de dados.
-- `npm run test:integration`: Realiza os testes de integração com o Jest.
-- `npm run test:unit`: Realiza os testes de unidade com o Jest.
+- `npm run test`: Realiza os testes de integração com o Jest.
 
 <span id="estrutura-de-pastas">Estrutura de Pastas</span>
 
@@ -266,9 +336,11 @@ backend/
 ├── jest.config.js
 ├── README-ptbr.md
 ├── README.md
+├── tsconfig.json
 ├── src/
 │   ├── controllers/
 │   │   ├── recipeController.ts
+|   |   ├── reviewsController.ts
 │   │   └── userController.ts
 │   ├── index.ts
 │   ├── middlewares/
@@ -282,9 +354,11 @@ backend/
 │   |    └── SearchRecipeService.ts
 |   ├── validations/
 |   |    ├── recipeValidations.ts
+|   |    ├── reviewsValidations.ts
 |   |    └── userValidation.ts
 ├── tsconfig.json
 └── tests/
-     ├── recipeController.integration.ts
-     └── userController.integration.ts
+     ├── recipeController.integration.test.ts
+     ├── reviewsController.integration.test.ts
+     └── userController.integration.test.ts
 ```

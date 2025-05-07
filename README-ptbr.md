@@ -127,8 +127,13 @@ Aqui estão algumas capturas de tela do sistema para ilustrar suas funcionalidad
    ![RecipesPage](./screenshots/RecipesPage.png)
 
 3. **Modal de Receita**  
-   Exibe os detalhes de uma receita específica, como ingredientes e instruções.  
+   Exibe os detalhes de uma receita específica, como ingredientes e instruções.
+   - Modal offline.
    ![ModalCard](./screenshots/ModalCard.png)
+   - Modal online.
+   ![ModalCardOnline](./screenshots/ModalRecipeWithLogin.png)
+   - Reviews.
+   ![ModalReview](./screenshots/ReviewSection.png)
 
 4. **Página de Login**  
    Permite que os usuários façam autenticação para acessar suas receitas favoritas.  

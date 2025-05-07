@@ -68,6 +68,7 @@ Este é o front-end do aplicativo Tasty🥐Pick, desenvolvido em React com TypeS
 - **RecipeModal**: Modal para exibir detalhes de uma receita específica.
 - **EmptyFavouriteTab**: Exibido quando o usuário não possui receitas favoritas.
 - **EmptyRecipeTab**: Exibido quando a busca por receitas não retorna resultados.
+- **RecipeReviews**: Exibe os comentários e notas da receita.
 
 ## <span id="estrutura-de-pastas">Estrutura de Pastas</span>
 ```
@@ -91,11 +92,13 @@ frontend/
 │ │ ├── NavBar.tsx 
 │ │ ├── RecipeCard.tsx 
 │ │ ├── RecipeCardOffline.tsx 
-│ │ └── RecipeModal.tsx 
+│ │ ├── RecipeModal.tsx 
+| | └── RecipeReviews.tsx
 │ ├── main.tsx 
 │ ├── model/ 
 │ │ ├── Recipe.ts 
 │ │ ├── RecipeSummary.ts 
+| | ├── Review.ts
 │ │ └── User.ts 
 │ ├── pages/ 
 │ │ ├── css/ 
@@ -115,8 +118,11 @@ frontend/
 │ │ └── Routes.tsx 
 │ ├── service/ 
 │ │ ├── AddFavouriteRecipeService.ts 
+| | ├── AddReviewService.ts
 │ │ ├── GetFavouriteRecipesService.ts 
 │ │ ├── GetRecipeSummaryService.ts 
+| | ├── GetReviewsByRecipeService.ts
+| | ├── GetUserByIdService.ts
 │ │ ├── GetUserInfoService.ts 
 │ │ ├── RemoveFavouriteRecipeService.ts 
 │ │ ├── RequestPasswordService.ts 

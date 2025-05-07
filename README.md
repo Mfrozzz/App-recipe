@@ -126,7 +126,12 @@ Here are some screenshots of the system to illustrate its features:
 
 3. **Recipe Modal**  
    Displays the details of a specific recipe, such as ingredients and instructions.  
+   - Modal offline.
    ![ModalCard](./screenshots/ModalCard.png)
+   - Modal online.
+   ![ModalCardOnline](./screenshots/ModalRecipeWithLogin.png)
+   - Reviews.
+   ![ModalReview](./screenshots/ReviewSection.png)
 
 4. **Login Page**  
    Allows users to authenticate and access their favorite recipes.  
